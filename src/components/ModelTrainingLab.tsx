@@ -1,7 +1,22 @@
 import React, { useState } from 'react';
 import { trainWord2VecModel } from '../api';
 import { TrainModelParams, TrainModelResponse } from '../types';
-import { Play, RotateCcw, CheckCircle2, AlertCircle, Loader2, Cpu, Sliders, Award } from 'lucide-react';
+import {
+  Play,
+  RotateCcw,
+  CheckCircle2,
+  AlertCircle,
+  Loader2,
+  Cpu,
+  Sliders,
+  Award,
+  BookOpen,
+  Sparkles,
+  Layers,
+  FileText,
+  PlusCircle,
+  Zap
+} from 'lucide-react';
 
 interface ModelTrainingLabProps {
   onModelTrained?: () => void;
@@ -17,12 +32,39 @@ export const ModelTrainingLab: React.FC<ModelTrainingLabProps> = ({ onModelTrain
     epochs: 40,
     seed: 42,
     custom_text: '',
+    append_to_default: true,
   });
 
   const [useCustomCorpus, setUseCustomCorpus] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [report, setReport] = useState<TrainModelResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  // Vektör boyutu hazır şablonları
+  const vectorPresets = [
+    { size: 30, label: '30d (Kompakt)', desc: 'Hafif & hızlı' },
+    { size: 50, label: '50d (Hafif)', desc: 'Düşük bellek' },
+    { size: 100, label: '100d (Standart)', desc: 'Önerilen Word2Vec' },
+    { size: 150, label: '150d (Geniş)', desc: 'Yüksek ayırt edicilik' },
+    { size: 200, label: '200d (Gelişmiş)', desc: 'Zengin uzay' },
+    { size: 300, label: '300d (Google Standardı)', desc: 'Maksimum kapasite' },
+  ];
+
+  // Hazır özel metin şablonları
+  const sampleCustomTexts = [
+    {
+      title: 'Yapay Zeka & Bilişim',
+      text: 'Yapay zeka ve derin öğrenme modelleri büyük veri üzerinde algoritmalar ile optimize edilir. Bilgisayar mühendisliği yazılım mimarisi, veri tabanları ve makine öğrenmesi uygulamaları geliştirir. Sinir ağları karmaşık örüntüleri tanımak için katmanlar boyunca parametreleri günceller.',
+    },
+    {
+      title: 'Tıp & Sağlık Bilimleri',
+      text: 'Hastanede uzman doktor ve hemşireler hastalara tanı koyarak tedavi sürecini yönetir. Tıp fakültesinde anatomi, biyokimya ve cerrahi disiplinleri klinik uygulamalarla öğretilir. Aşılar, antibiyotikler ve ilaçlar bağışıklık sistemini patojenlere karşı güçlendirir.',
+    },
+    {
+      title: 'Hukuk & Adalet',
+      text: 'Adalet sarayında hakim ve savcılar anayasa, kanunlar ve içtihatlar ışığında hüküm verir. Avukatlar müvekkillerinin haklarını mahkemede savunur. Hukuk devleti ilkesi bireysel hak ve özgürlüklerin teminatıdır.',
+    },
+  ];
 
   const handleTrain = async () => {
     setLoading(true);
@@ -32,6 +74,7 @@ export const ModelTrainingLab: React.FC<ModelTrainingLabProps> = ({ onModelTrain
     const payload: TrainModelParams = {
       ...params,
       custom_text: useCustomCorpus ? params.custom_text : undefined,
+      append_to_default: useCustomCorpus ? params.append_to_default : true,
     };
 
     try {
@@ -57,6 +100,7 @@ export const ModelTrainingLab: React.FC<ModelTrainingLabProps> = ({ onModelTrain
       epochs: 40,
       seed: 42,
       custom_text: '',
+      append_to_default: true,
     });
     setUseCustomCorpus(false);
     setError(null);
@@ -64,20 +108,21 @@ export const ModelTrainingLab: React.FC<ModelTrainingLabProps> = ({ onModelTrain
 
   return (
     <div className="space-y-6">
-      {/* Üst Başlık */}
+      {/* Üst Başlık & Açıklama */}
       <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-400 border border-purple-200 dark:border-purple-800/60 mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800/60 mb-3">
               <Sliders className="w-3.5 h-3.5" />
-              <span>Gensim 4.x Word2Vec Hiperparametre Laboratuvarı</span>
+              <span>Gensim 4.x Word2Vec Dinamik Hiperparametre Laboratuvarı</span>
             </div>
             <h2 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
-              Model Eğitimi & Parametre İnceleme
+              Sözlük Dağarcığı & Vektör Boyutu Yapılandırması
             </h2>
             <p className="text-sm text-slate-600 dark:text-slate-400 mt-1 max-w-2xl leading-relaxed">
-              Word2Vec modelinin mimarisini (Skip-gram vs. CBOW), vektör boyutunu, bağlam penceresini
-              ve negatif örnekleme katsayısını değiştirerek modeli gerçek zamanlı eğitin.
+              İstediğiniz zaman <strong>vektör boyutunu (d)</strong>, <strong>sözlük dağarcığını</strong>,
+              bağlam penceresini ve mimariyi (Skip-gram vs. CBOW) değiştirip modeli anında yeniden eğitebilirsiniz.
+              Yeni eğitilen model tüm uygulamada hemen aktif olur.
             </p>
           </div>
 
@@ -87,76 +132,232 @@ export const ModelTrainingLab: React.FC<ModelTrainingLabProps> = ({ onModelTrain
             className="px-3.5 py-2 rounded-xl text-xs font-medium bg-slate-100 hover:bg-slate-200 dark:bg-slate-800/80 dark:hover:bg-slate-700 text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white border border-slate-200 dark:border-slate-700/60 transition-colors flex items-center gap-2 self-start md:self-auto cursor-pointer"
           >
             <RotateCcw className="w-3.5 h-3.5" />
-            <span>Varsayılan Parametrelere Sıfırla</span>
+            <span>Varsayılanlara Sıfırla</span>
           </button>
         </div>
       </div>
 
-      {/* Parametre Yapılandırma Paneli */}
+      {/* 1. VEKTÖR BOYUTU YAPILANDIRMASI */}
+      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm space-y-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Layers className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+            <h3 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
+              1. Vektör Boyutu (Vector Dimension - d)
+            </h3>
+          </div>
+          <span className="font-mono text-sm sm:text-base font-extrabold text-indigo-600 dark:text-indigo-400 px-3 py-1 bg-indigo-50 dark:bg-indigo-950/60 rounded-lg border border-indigo-200 dark:border-indigo-800/50">
+            d = {params.vector_size} Boyut
+          </span>
+        </div>
+        <p className="text-xs text-slate-500 leading-relaxed">
+          Her Türkçe kelimenin gömüldüğü latent vektör uzayının boyutudur. Yüksek boyutlar daha zengin anlamsal
+          nüansları yakalar; küçük boyutlar ise daha hızlı hesaplanır ve düşük bellek tüketir.
+        </p>
+
+        {/* Hızlı Ön Ayar Butonları */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 pt-1">
+          {vectorPresets.map((vp) => (
+            <button
+              key={vp.size}
+              type="button"
+              onClick={() => setParams({ ...params, vector_size: vp.size })}
+              className={`p-2.5 rounded-xl text-left border transition-all cursor-pointer ${
+                params.vector_size === vp.size
+                  ? 'bg-indigo-600 text-white border-indigo-600 shadow-xs'
+                  : 'bg-slate-50 dark:bg-slate-950/60 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-700'
+              }`}
+            >
+              <div className="text-xs font-bold">{vp.label}</div>
+              <div
+                className={`text-[10px] mt-0.5 ${
+                  params.vector_size === vp.size ? 'text-indigo-100' : 'text-slate-500'
+                }`}
+              >
+                {vp.desc}
+              </div>
+            </button>
+          ))}
+        </div>
+
+        {/* Hassas Kaydırıcı (Slider) */}
+        <div className="pt-2 space-y-1">
+          <div className="flex justify-between text-xs text-slate-500">
+            <span>Minimum (20d)</span>
+            <span className="font-mono font-semibold text-slate-700 dark:text-slate-300">{params.vector_size} Boyut</span>
+            <span>Maksimum (300d)</span>
+          </div>
+          <input
+            type="range"
+            min="20"
+            max="300"
+            step="10"
+            value={params.vector_size}
+            onChange={(e) => setParams({ ...params, vector_size: parseInt(e.target.value, 10) })}
+            className="w-full accent-indigo-600 cursor-pointer"
+          />
+        </div>
+      </div>
+
+      {/* 2. SÖZLÜK DAĞARCIĞI VE DERLEM SEÇİMİ */}
+      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm space-y-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <BookOpen className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+            <h3 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
+              2. Sözlük Dağarcığı & Eğitim Derlemi
+            </h3>
+          </div>
+          <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/50">
+            Zengin Türkçe Korpus (~2.027+ Kelime)
+          </span>
+        </div>
+        <p className="text-xs text-slate-500 leading-relaxed">
+          Word2Vec modelinin öğrendiği kelime dağarcığını yönetin. Standart Türkçe derleme kendi kelime ve
+          cümlelerinizi ekleyebilir veya tamamen özel bir veri kümesiyle eğitebilirsiniz.
+        </p>
+
+        {/* Özel Metin / Kelime Ekleme Anahtarı */}
+        <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <label className="flex items-center gap-2.5 cursor-pointer text-xs font-semibold text-slate-800 dark:text-slate-200">
+              <input
+                type="checkbox"
+                checked={useCustomCorpus}
+                onChange={(e) => setUseCustomCorpus(e.target.checked)}
+                className="w-4 h-4 rounded text-indigo-600 focus:ring-0 cursor-pointer"
+              />
+              <span>Sözlük Dağarcığına Özel Kelime / Cümle Ekle</span>
+            </label>
+            <span className="text-[11px] text-slate-500">
+              Kendi uzmanlık alanınıza veya ödev konusuna göre yeni kelimeler tanımlayın.
+            </span>
+          </div>
+
+          {useCustomCorpus && (
+            <div className="space-y-3 pt-2">
+              {/* Dağarcık Birleştirme Modu */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <button
+                  type="button"
+                  onClick={() => setParams({ ...params, append_to_default: true })}
+                  className={`p-3 rounded-xl text-left border transition-all cursor-pointer ${
+                    params.append_to_default
+                      ? 'bg-indigo-50 dark:bg-indigo-950/40 border-indigo-400 dark:border-indigo-600 text-indigo-900 dark:text-indigo-200'
+                      : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400'
+                  }`}
+                >
+                  <div className="flex items-center gap-2 text-xs font-bold">
+                    <PlusCircle className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                    <span>Mevcut Dağarcığı Genişlet (Önerilen)</span>
+                  </div>
+                  <p className="text-[11px] text-slate-500 mt-1">
+                    Mevcut 2.000+ Türkçe kelimeyi korur, girdiğiniz yeni kelimeleri de sözlüğe ekler.
+                  </p>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setParams({ ...params, append_to_default: false })}
+                  className={`p-3 rounded-xl text-left border transition-all cursor-pointer ${
+                    !params.append_to_default
+                      ? 'bg-amber-50 dark:bg-amber-950/40 border-amber-400 dark:border-amber-600 text-amber-900 dark:text-amber-200'
+                      : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400'
+                  }`}
+                >
+                  <div className="flex items-center gap-2 text-xs font-bold">
+                    <FileText className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+                    <span>Yalnızca Özel Metni Kullan</span>
+                  </div>
+                  <p className="text-[11px] text-slate-500 mt-1">
+                    Sadece aşağıdaki kutudaki metni eğitir, sözlük sadece bu metindeki kelimelerden oluşur.
+                  </p>
+                </button>
+              </div>
+
+              {/* Hızlı Örnek Şablonları */}
+              <div className="flex flex-wrap items-center gap-2 pt-1">
+                <span className="text-[11px] font-medium text-slate-500 flex items-center gap-1">
+                  <Zap className="w-3 h-3 text-amber-500" />
+                  Hazır Örnek Yükle:
+                </span>
+                {sampleCustomTexts.map((sample, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setParams({ ...params, custom_text: sample.text })}
+                    className="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700/60 text-slate-700 dark:text-slate-300 transition-colors cursor-pointer"
+                  >
+                    {sample.title}
+                  </button>
+                ))}
+              </div>
+
+              {/* Metin Giriş Alanı */}
+              <textarea
+                rows={4}
+                value={params.custom_text}
+                onChange={(e) => setParams({ ...params, custom_text: e.target.value })}
+                placeholder="Eğitmek istediğiniz Türkçe cümleleri buraya yapıştırın veya yazın (Örn: 'Kuantum bilgisayarları süperpozisyon ve dolanıklık prensipleri ile çalışır. Kriptografi ve simülasyon alanlarında çığır açmaktadır.')..."
+                className="w-full p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono placeholder-slate-400 dark:placeholder-slate-500 focus:border-indigo-500 focus:outline-none transition-colors"
+              />
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* 3. DİĞER HİPERPARAMETRELER (PENCERE, MİMARİ, EPOCH, MİN-COUNT) */}
       <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="flex items-center gap-2">
+          <Sliders className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+          <h3 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
+            3. Model Mimarisi & Optimizasyon Parametreleri
+          </h3>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {/* Mimari Seçimi */}
           <div className="space-y-2">
             <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center justify-between">
-              <span>Model Mimarisi (sg)</span>
-              <span className="font-mono text-cyan-600 dark:text-cyan-400 text-[11px] font-bold">
-                {params.sg === 1 ? 'Skip-gram (Önerilen)' : 'CBOW (Bag of Words)'}
+              <span>Model Mimarisi</span>
+              <span className="font-mono text-indigo-600 dark:text-indigo-400 text-[11px] font-bold">
+                {params.sg === 1 ? 'Skip-gram (sg=1)' : 'CBOW (sg=0)'}
               </span>
             </label>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-1.5">
               <button
                 type="button"
                 onClick={() => setParams({ ...params, sg: 1 })}
-                className={`py-2 px-3 rounded-xl text-xs font-semibold border transition-colors cursor-pointer ${
+                className={`py-2 px-2.5 rounded-xl text-xs font-semibold border transition-colors cursor-pointer text-center ${
                   params.sg === 1
-                    ? 'bg-cyan-50 dark:bg-cyan-500/20 border-cyan-400 dark:border-cyan-500/50 text-cyan-800 dark:text-cyan-300'
-                    : 'bg-slate-50 dark:bg-slate-950/70 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    ? 'bg-indigo-600 text-white border-indigo-600 shadow-xs'
+                    : 'bg-slate-50 dark:bg-slate-950/70 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400'
                 }`}
               >
-                Skip-gram (sg=1)
+                Skip-gram
               </button>
               <button
                 type="button"
                 onClick={() => setParams({ ...params, sg: 0 })}
-                className={`py-2 px-3 rounded-xl text-xs font-semibold border transition-colors cursor-pointer ${
+                className={`py-2 px-2.5 rounded-xl text-xs font-semibold border transition-colors cursor-pointer text-center ${
                   params.sg === 0
-                    ? 'bg-cyan-50 dark:bg-cyan-500/20 border-cyan-400 dark:border-cyan-500/50 text-cyan-800 dark:text-cyan-300'
-                    : 'bg-slate-50 dark:bg-slate-950/70 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    ? 'bg-indigo-600 text-white border-indigo-600 shadow-xs'
+                    : 'bg-slate-50 dark:bg-slate-950/70 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400'
                 }`}
               >
-                CBOW (sg=0)
+                CBOW
               </button>
             </div>
-            <p className="text-[11px] text-slate-500 leading-tight">
-              Skip-gram nadir kelimeleri ve küçük derlemleri daha iyi temsil eder; CBOW ise daha hızlı yakınsar.
+            <p className="text-[10px] text-slate-500 leading-tight">
+              Skip-gram nadir kelimeleri daha iyi temsil eder; CBOW ise daha hızlıdır.
             </p>
           </div>
 
-          {/* Vektör Boyutu (vector_size) */}
+          {/* Bağlam Penceresi (window) */}
           <div className="space-y-2">
             <div className="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-slate-300">
-              <span>Vektör Boyutu (d)</span>
-              <span className="font-mono text-cyan-600 dark:text-cyan-400 font-bold">{params.vector_size}</span>
-            </div>
-            <input
-              type="range"
-              min="20"
-              max="250"
-              step="10"
-              value={params.vector_size}
-              onChange={(e) => setParams({ ...params, vector_size: parseInt(e.target.value, 10) })}
-              className="w-full accent-cyan-500 cursor-pointer"
-            />
-            <p className="text-[11px] text-slate-500 leading-tight">
-              Kelimenin gömüldüğü latent vektör uzayının boyutu (ör. 100 boyutlu n-sphere).
-            </p>
-          </div>
-
-          {/* Pencere Boyutu (window) */}
-          <div className="space-y-2">
-            <div className="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-slate-300">
-              <span>Bağlam Penceresi (±w)</span>
-              <span className="font-mono text-cyan-600 dark:text-cyan-400 font-bold">±{params.window} kelime</span>
+              <span>Pencere (±w)</span>
+              <span className="font-mono text-indigo-600 dark:text-indigo-400 font-bold">±{params.window} kelime</span>
             </div>
             <input
               type="range"
@@ -164,17 +365,17 @@ export const ModelTrainingLab: React.FC<ModelTrainingLabProps> = ({ onModelTrain
               max="12"
               value={params.window}
               onChange={(e) => setParams({ ...params, window: parseInt(e.target.value, 10) })}
-              className="w-full accent-cyan-500 cursor-pointer"
+              className="w-full accent-indigo-600 cursor-pointer"
             />
-            <p className="text-[11px] text-slate-500 leading-tight">
-              Hedef kelimenin sağı ve solundan dikkate alınacak maksimum komşu mesafesi.
+            <p className="text-[10px] text-slate-500 leading-tight">
+              Hedef kelimenin sağından ve solundan taranacak komşu mesafesi.
             </p>
           </div>
 
           {/* Epoch Sayısı */}
           <div className="space-y-2">
             <div className="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-slate-300">
-              <span>Eğitim Döngüsü (Epochs)</span>
+              <span>Eğitim Döngüsü</span>
               <span className="font-mono text-indigo-600 dark:text-indigo-400 font-bold">{params.epochs} epoch</span>
             </div>
             <input
@@ -184,114 +385,65 @@ export const ModelTrainingLab: React.FC<ModelTrainingLabProps> = ({ onModelTrain
               step="5"
               value={params.epochs}
               onChange={(e) => setParams({ ...params, epochs: parseInt(e.target.value, 10) })}
-              className="w-full accent-indigo-500 cursor-pointer"
+              className="w-full accent-indigo-600 cursor-pointer"
             />
-            <p className="text-[11px] text-slate-500 leading-tight">
-              Tüm derlem üzerinde yapılacak tam optimizasyon geçişlerinin sayısı.
+            <p className="text-[10px] text-slate-500 leading-tight">
+              Tüm derlem üzerindeki tam geçiş sayısı (30-50 önerilir).
             </p>
           </div>
 
-          {/* Negatif Örnekleme (negative) */}
+          {/* Min Frekans (min_count) */}
           <div className="space-y-2">
             <div className="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-slate-300">
-              <span>Negatif Örnekleme (k)</span>
-              <span className="font-mono text-indigo-600 dark:text-indigo-400 font-bold">{params.negative} kelime</span>
+              <span>Min. Frekans (Eşik)</span>
+              <span className="font-mono text-indigo-600 dark:text-indigo-400 font-bold">{params.min_count}</span>
             </div>
-            <input
-              type="range"
-              min="2"
-              max="15"
-              value={params.negative}
-              onChange={(e) => setParams({ ...params, negative: parseInt(e.target.value, 10) })}
-              className="w-full accent-indigo-500 cursor-pointer"
-            />
-            <p className="text-[11px] text-slate-500 leading-tight">
-              Her pozitif çift için gradyan güncellemesinde çekilecek gürültü kelimeleri.
+            <select
+              value={params.min_count}
+              onChange={(e) => setParams({ ...params, min_count: parseInt(e.target.value, 10) })}
+              className="w-full px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-semibold cursor-pointer"
+            >
+              <option value="1">1 (Tüm benzersiz kelimeler - En geniş dağarcık)</option>
+              <option value="2">2 (En az 2 kez geçen kelimeler)</option>
+              <option value="3">3 (En az 3 kez geçen kelimeler)</option>
+            </select>
+            <p className="text-[10px] text-slate-500 leading-tight">
+              1 seçildiğinde tekil kelimeler de sözlüğe eklenir.
             </p>
           </div>
-
-          {/* Minimum Frekans & Tohum */}
-          <div className="grid grid-cols-2 gap-3">
-            <div className="space-y-1">
-              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">Min. Frekans</label>
-              <input
-                type="number"
-                min="1"
-                max="5"
-                value={params.min_count}
-                onChange={(e) => setParams({ ...params, min_count: parseInt(e.target.value, 10) || 1 })}
-                className="w-full px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs focus:border-cyan-500 focus:outline-none"
-              />
-            </div>
-            <div className="space-y-1">
-              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">Rastgele Tohum</label>
-              <input
-                type="number"
-                value={params.seed}
-                onChange={(e) => setParams({ ...params, seed: parseInt(e.target.value, 10) || 42 })}
-                className="w-full px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white font-mono text-xs focus:border-cyan-500 focus:outline-none"
-              />
-            </div>
-          </div>
         </div>
 
-        {/* Özel Metin / Derlem Ekleme Seçeneği */}
-        <div className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-3">
-          <div className="flex items-center justify-between">
-            <label className="flex items-center gap-2 cursor-pointer text-xs font-medium text-slate-700 dark:text-slate-300">
-              <input
-                type="checkbox"
-                checked={useCustomCorpus}
-                onChange={(e) => setUseCustomCorpus(e.target.checked)}
-                className="rounded bg-slate-50 dark:bg-slate-950 border-slate-300 dark:border-slate-700 text-cyan-600 focus:ring-0 cursor-pointer"
-              />
-              <span>Özel Eğitim Metni Kullan (Opsiyonel)</span>
-            </label>
-            <span className="text-[11px] text-slate-500">
-              İşaretlenmezse sistemdeki zengin Türkçe derlem kullanılır.
-            </span>
-          </div>
-
-          {useCustomCorpus && (
-            <textarea
-              rows={4}
-              value={params.custom_text}
-              onChange={(e) => setParams({ ...params, custom_text: e.target.value })}
-              placeholder="Eğitmek istediğiniz Türkçe cümleleri buraya yapıştırın (en az 2-3 cümle)..."
-              className="w-full p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white text-xs font-mono placeholder-slate-400 dark:placeholder-slate-500 focus:border-cyan-500 focus:outline-none transition-colors"
-            />
-          )}
-        </div>
-
-        {/* Eğitimi Başlat Butonu */}
-        <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
+        {/* Eğitimi Başlat Barı */}
+        <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-2">
-            <Cpu className="w-4 h-4 text-cyan-600 dark:text-cyan-400 flex-shrink-0" />
-            <span>Python & Gensim kütüphanesi doğrudan yerel makinede çalıştırılır.</span>
+            <Cpu className="w-4 h-4 text-indigo-600 dark:text-indigo-400 flex-shrink-0" />
+            <span>
+              Eğitim doğrudan Python <strong>Gensim Word2Vec</strong> kütüphanesi üzerinde yürütülür.
+            </span>
           </div>
 
           <button
             type="button"
             onClick={handleTrain}
             disabled={loading}
-            className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
+            className="w-full sm:w-auto px-7 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm shadow-md transition-all flex items-center justify-center gap-2.5 disabled:opacity-50 cursor-pointer"
           >
             {loading ? (
               <>
                 <Loader2 className="w-4 h-4 animate-spin" />
-                <span>Gensim ile Eğitiliyor...</span>
+                <span>Word2Vec Modeli Eğitiliyor ({params.vector_size}d)...</span>
               </>
             ) : (
               <>
                 <Play className="w-4 h-4 fill-white" />
-                <span>Word2Vec Modelini Eğit</span>
+                <span>Modeli Yeniden Eğit ve Güncelle</span>
               </>
             )}
           </button>
         </div>
       </div>
 
-      {/* Hata Mesajı */}
+      {/* Hata Bildirimi */}
       {error && (
         <div className="p-4 rounded-xl bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-800 text-rose-700 dark:text-rose-300 text-sm flex items-start gap-3">
           <AlertCircle className="w-5 h-5 flex-shrink-0 text-rose-500 mt-0.5" />
@@ -302,46 +454,48 @@ export const ModelTrainingLab: React.FC<ModelTrainingLabProps> = ({ onModelTrain
         </div>
       )}
 
-      {/* Eğitim Başarı Raporu */}
+      {/* Başarı Raporu */}
       {report && (
         <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 gap-2">
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-              <h3 className="text-base font-bold text-slate-900 dark:text-white">Eğitim Başarıyla Tamamlandı!</h3>
+              <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                Yeni Model Başarıyla Eğitildi ve Uygulamada Aktif Edildi!
+              </h3>
             </div>
             <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
-              Süre: <strong className="text-slate-900 dark:text-white">{report.training_time_seconds}s</strong>
+              Eğitim Süresi: <strong className="text-slate-900 dark:text-white">{report.training_time_seconds}s</strong>
             </span>
           </div>
 
           {/* Rapor Metrikleri */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800">
-              <span className="text-xs text-slate-500 dark:text-slate-400 block font-medium">Sözlük Büyüklüğü</span>
-              <span className="text-lg font-bold font-mono text-cyan-600 dark:text-cyan-400 mt-0.5 block">
+              <span className="text-xs text-slate-500 dark:text-slate-400 block font-medium">Sözlük Dağarcığı</span>
+              <span className="text-lg font-bold font-mono text-indigo-600 dark:text-indigo-400 mt-0.5 block">
                 {report.vocabulary_size} kelime
               </span>
             </div>
 
             <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800">
-              <span className="text-xs text-slate-500 dark:text-slate-400 block font-medium">Mimari</span>
-              <span className="text-xs font-bold text-indigo-700 dark:text-indigo-300 mt-1 block">
-                {report.algorithm}
+              <span className="text-xs text-slate-500 dark:text-slate-400 block font-medium">Vektör Boyutu</span>
+              <span className="text-lg font-bold font-mono text-indigo-600 dark:text-indigo-400 mt-0.5 block">
+                d = {report.parameters?.vector_size || params.vector_size}
               </span>
             </div>
 
             <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800">
-              <span className="text-xs text-slate-500 dark:text-slate-400 block font-medium">Ayrım Gücü</span>
-              <span className="text-lg font-bold font-mono text-emerald-600 dark:text-emerald-400 mt-0.5 block">
-                {report.evaluation?.discrimination_margin ?? 'N/A'}
+              <span className="text-xs text-slate-500 dark:text-slate-400 block font-medium">Mimari & Epoch</span>
+              <span className="text-xs font-bold text-slate-800 dark:text-slate-200 mt-1 block">
+                {report.algorithm} ({report.parameters?.epochs || params.epochs} ep)
               </span>
             </div>
 
             <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800">
-              <span className="text-xs text-slate-500 dark:text-slate-400 block font-medium">Model Durumu</span>
+              <span className="text-xs text-slate-500 dark:text-slate-400 block font-medium">Sistem Durumu</span>
               <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 mt-1 block">
-                Diske Kaydedildi & Aktif
+                Tüm Laboratuvarda Aktif
               </span>
             </div>
           </div>
@@ -357,12 +511,42 @@ export const ModelTrainingLab: React.FC<ModelTrainingLabProps> = ({ onModelTrain
                 {report.evaluation.interpretation}
               </p>
               <div className="flex flex-wrap gap-4 pt-1 font-mono text-[11px] text-slate-600 dark:text-slate-400">
-                <span>Yüksek Çiftler Ort.: <strong className="text-emerald-600 dark:text-emerald-400">{report.evaluation.avg_similarity_high_tier}</strong></span>
-                <span>Orta Çiftler Ort.: <strong className="text-amber-600 dark:text-amber-400">{report.evaluation.avg_similarity_medium_tier}</strong></span>
-                <span>İlişkisiz Çiftler Ort.: <strong className="text-rose-600 dark:text-rose-400">{report.evaluation.avg_similarity_low_tier}</strong></span>
+                <span>
+                  Yüksek Çiftler Ort.:{' '}
+                  <strong className="text-emerald-600 dark:text-emerald-400">
+                    {report.evaluation.avg_similarity_high_tier}
+                  </strong>
+                </span>
+                <span>
+                  Orta Çiftler Ort.:{' '}
+                  <strong className="text-amber-600 dark:text-amber-400">
+                    {report.evaluation.avg_similarity_medium_tier}
+                  </strong>
+                </span>
+                <span>
+                  İlişkisiz Çiftler Ort.:{' '}
+                  <strong className="text-rose-600 dark:text-rose-400">
+                    {report.evaluation.avg_similarity_low_tier}
+                  </strong>
+                </span>
+                <span>
+                  Ayrım Gücü Marjı:{' '}
+                  <strong className="text-indigo-600 dark:text-indigo-400">
+                    +{report.evaluation.discrimination_margin}
+                  </strong>
+                </span>
               </div>
             </div>
           )}
+
+          <div className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-2">
+            <Sparkles className="w-4 h-4 text-indigo-500" />
+            <span>
+              Artık <strong>Kelime Laboratuvarı</strong>, <strong>2D Vektör Haritası</strong> ve{' '}
+              <strong>Sözlük Dağarcığı</strong> sekmelerinde yeni eğittiğiniz Word2Vec modelini doğrudan
+              test edebilirsiniz!
+            </span>
+          </div>
         </div>
       )}
     </div>

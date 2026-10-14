@@ -120,7 +120,7 @@ export default function App() {
     { id: 'words', label: '1. Kelime Laboratuvarı', icon: Sparkles, desc: 'Benzerlik, Karşılaştırma, Analoji' },
     { id: 'text', label: '2. Metin Analizi', icon: FileText, desc: 'Kelime Frekansı & Vektör' },
     { id: 'visuals', label: '3. Görsel Harita & Ağ', icon: Compass, desc: '2D PCA & Semantik Ağ' },
-    { id: 'corpus', label: '4. Türkçe Derlem & Sözlük', icon: Database, desc: 'Veri Kümesi & Dağarcık' },
+    { id: 'corpus', label: '4. Sözlük, Vektör & Model Eğitimi', icon: Database, desc: 'Dağarcık & Vektör Boyutu' },
     { id: 'homework', label: '5. Ödev & Kaynaklar', icon: GraduationCap, desc: 'Ders Bağlantıları & Rapor' },
   ];
 
@@ -150,6 +150,11 @@ export default function App() {
         modelInfo={modelInfo}
         onExploreClick={() => {
           setActiveTab('words');
+          scrollToWorkspace();
+        }}
+        onCustomizeModel={() => {
+          setActiveTab('corpus');
+          setCorpusSubTab('training');
           scrollToWorkspace();
         }}
         onReportClick={() => {
@@ -288,7 +293,7 @@ export default function App() {
                     : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                 }`}
               >
-                Hiperparametre Eğitimi
+                ⚙️ Sözlük & Vektör Boyutunu Değiştir
               </button>
             </div>
 

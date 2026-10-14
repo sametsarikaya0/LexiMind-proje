@@ -167,9 +167,31 @@ def get_word_network():
     try:
         return jsonify(nlp_service.get_network(center_word=word, top_n=top_n))
     except ValueError as ve:
-        return jsonify({"detail": str(ve)}), 404
+@app.route('/api/model/train', methods=['POST'])
+def train_model():
+    data = request.get_json(silent=True) or {}
+    try:
+        params = {
+            "vector_size": int(data.get("vector_size", 100)),
+            "window": int(data.get("window", 5)),
+            "min_count": int(data.get("min_count", 1)),
+            "sg": int(data.get("sg", 1)),
+            "negative": int(data.get("negative", 5)),
+            "epochs": int(data.get("epochs", 40)),
+            "seed": int(data.get("seed", 42)),
+            "workers": 2,
+            "compute_loss": True
+        }
+        report = nlp_service.train_custom_model(
+            params=params,
+            custom_text=data.get("custom_text"),
+            append_to_default=data.get("append_to_default", True)
+        )
+        return jsonify(report), 200
+    except ValueError as ve:
+        return jsonify({"detail": str(ve)}), 400
     except Exception as e:
-        return jsonify({"detail": str(e)}), 500
+        return jsonify({"detail": f"Eğitim hatası: {str(e)}"}), 500
 
 
 if __name__ == '__main__':

@@ -686,7 +686,7 @@ class NLPService:
         """
         return compute_corpus_statistics(self.corpus_path)
 
-    def train_custom_model(self, params: Dict[str, Any], custom_text: Optional[str] = None) -> Dict[str, Any]:
+    def train_custom_model(self, params: Dict[str, Any], custom_text: Optional[str] = None, append_to_default: bool = True) -> Dict[str, Any]:
         """
         Özel hiperparametrelerle ve opsiyonel kullanıcı metniyle modeli yeniden eğitir.
         Gensim Word2Vec kütüphanesini doğrudan çalıştırır ve bellekteki modeli günceller.
@@ -700,14 +700,15 @@ class NLPService:
                 if len(toks) >= 2:
                     custom_sentences.append(toks)
             
-            if len(custom_sentences) < 2:
-                raise ValueError("Özel eğitim metni en az 2 geçerli cümle içermelidir.")
+            if len(custom_sentences) < 1:
+                raise ValueError("Özel eğitim metni en az 1-2 anlamlı kelimelik geçerli cümle içermelidir.")
 
         report = train_word2vec_model(
             corpus_path=self.corpus_path,
             model_save_path=self.model_path,
             params=params,
-            custom_sentences=custom_sentences
+            custom_sentences=custom_sentences,
+            append_to_default=append_to_default
         )
 
         # Modeli belleğe yeniden yükle
@@ -715,6 +716,7 @@ class NLPService:
         self.is_loaded = True
         self.training_metadata = report
         self._eval_cache = None  # Önbelleği temizle
+        self._build_vocab_indexes()  # Yeni kelimeler için normalizasyon ve ASCII eşleme indeksini güncelle
 
         return report
 

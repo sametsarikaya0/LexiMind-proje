@@ -188,6 +188,7 @@ export interface TrainModelParams {
   epochs: number;
   seed: number;
   custom_text?: string;
+  append_to_default?: boolean;
 }
 
 export interface TrainModelResponse {

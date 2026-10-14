@@ -1,17 +1,19 @@
 import React from 'react';
-import { BookOpen, Cpu, Layers, GitBranch, ArrowRight, GraduationCap, CheckCircle2 } from 'lucide-react';
+import { BookOpen, Cpu, Layers, GitBranch, ArrowRight, GraduationCap, Sliders, Settings } from 'lucide-react';
 import { ModelInfo } from '../types';
 
 interface HeroSectionProps {
   modelInfo: ModelInfo | null;
   onExploreClick: () => void;
   onReportClick: () => void;
+  onCustomizeModel?: () => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
   modelInfo,
   onExploreClick,
   onReportClick,
+  onCustomizeModel,
 }) => {
   return (
     <div className="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60 py-8 sm:py-10 px-4 sm:px-6 lg:px-8 transition-colors">
@@ -22,9 +24,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <span aria-hidden="true">·</span>
           <span>Python 3.11</span>
           <span aria-hidden="true">·</span>
-          <span>Gensim 4.3 Word2Vec (Skip-gram)</span>
+          <span>Gensim 4.3 Word2Vec</span>
           <span aria-hidden="true">·</span>
-          <span>FastAPI & Flask (Vercel / Cloud Uyumlu)</span>
+          <span>FastAPI & Flask (Vercel Uyumlu)</span>
         </div>
 
         {/* Başlık ve Açıklama */}
@@ -35,10 +37,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         <p className="mt-3 text-xs sm:text-sm md:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl">
           Bu uygulama, üniversite NLP dersinde ele alınan <strong>Gensim Word2Vec</strong> algoritması ile
           Türkçe kelimelerin çok boyutlu vektör temsillerini öğrenir. Kelimeler arasındaki kosinüs benzerliğini
-          hesaplar, iki kelimeyi karşılaştırır, vektör analojisi yapar ve metin istatistikleri sunar.
+          hesaplar, iki kelimeyi karşılaştırır, vektör analojisi yapar ve dinamik olarak sözlük dağarcığı ve vektör boyutunu özelleştirmenize olanak tanır.
         </p>
 
-        {/* Aksiyon Butonları (Kelimeleri İncele & Ödev Notları) */}
+        {/* Aksiyon Butonları (Kelimeleri İncele, Sözlük/Vektör Ayarla & Ödev Notları) */}
         <div className="mt-6 flex flex-wrap items-center gap-3">
           <button
             type="button"
@@ -48,6 +50,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <span>Kelimeleri İncele</span>
             <ArrowRight className="w-4 h-4" />
           </button>
+
+          {onCustomizeModel && (
+            <button
+              type="button"
+              onClick={onCustomizeModel}
+              className="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800/60 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 transition-all flex items-center gap-2 cursor-pointer shadow-xs"
+            >
+              <Sliders className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+              <span>Sözlük & Vektör Boyutunu Değiştir</span>
+            </button>
+          )}
 
           <button
             type="button"
@@ -67,20 +80,29 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <span>Algoritma</span>
             </div>
             <div className="mt-1 text-base sm:text-lg font-bold font-mono text-slate-900 dark:text-white">
-              Word2Vec (Skip-gram)
+              Word2Vec ({modelInfo?.algorithm?.includes('CBOW') ? 'CBOW' : 'Skip-gram'})
             </div>
-            <div className="text-[11px] text-slate-500">sg=1 (Mikolov vd.)</div>
+            <div className="text-[11px] text-slate-500">Gensim 4.x Çekirdeği</div>
           </div>
 
-          <div className="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs">
-            <div className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5 font-medium">
-              <Layers className="w-3.5 h-3.5 text-indigo-500" />
-              <span>Vektör Boyutu</span>
+          <div
+            onClick={onCustomizeModel}
+            className={`p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs ${
+              onCustomizeModel ? 'cursor-pointer hover:border-indigo-400 dark:hover:border-indigo-600 transition-colors' : ''
+            }`}
+            title="Vektör boyutunu değiştirmek için tıklayın"
+          >
+            <div className="text-xs text-slate-500 dark:text-slate-400 flex items-center justify-between font-medium">
+              <span className="flex items-center gap-1.5">
+                <Layers className="w-3.5 h-3.5 text-indigo-500" />
+                <span>Vektör Boyutu</span>
+              </span>
+              {onCustomizeModel && <Settings className="w-3 h-3 text-slate-400" />}
             </div>
-            <div className="mt-1 text-base sm:text-lg font-bold font-mono text-slate-900 dark:text-white">
+            <div className="mt-1 text-base sm:text-lg font-bold font-mono text-indigo-600 dark:text-indigo-400">
               d = {modelInfo?.vector_size || 100}
             </div>
-            <div className="text-[11px] text-slate-500">Continuous Vector Space</div>
+            <div className="text-[11px] text-slate-500">Değiştirmek için tıkla ↗</div>
           </div>
 
           <div className="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs">
@@ -94,15 +116,24 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <div className="text-[11px] text-slate-500">Çevre kelime mesafesi</div>
           </div>
 
-          <div className="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs">
-            <div className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5 font-medium">
-              <BookOpen className="w-3.5 h-3.5 text-indigo-500" />
-              <span>Sözlük Dağarcığı</span>
+          <div
+            onClick={onCustomizeModel}
+            className={`p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs ${
+              onCustomizeModel ? 'cursor-pointer hover:border-indigo-400 dark:hover:border-indigo-600 transition-colors' : ''
+            }`}
+            title="Sözlük dağarcığını değiştirmek için tıklayın"
+          >
+            <div className="text-xs text-slate-500 dark:text-slate-400 flex items-center justify-between font-medium">
+              <span className="flex items-center gap-1.5">
+                <BookOpen className="w-3.5 h-3.5 text-indigo-500" />
+                <span>Sözlük Dağarcığı</span>
+              </span>
+              {onCustomizeModel && <Settings className="w-3 h-3 text-slate-400" />}
             </div>
-            <div className="mt-1 text-base sm:text-lg font-bold font-mono text-slate-900 dark:text-white">
+            <div className="mt-1 text-base sm:text-lg font-bold font-mono text-indigo-600 dark:text-indigo-400">
               {modelInfo?.vocab_size || 2027} Kelime
             </div>
-            <div className="text-[11px] text-slate-500">Eğitilmiş Türkçe kelimeler</div>
+            <div className="text-[11px] text-slate-500">Genişletmek için tıkla ↗</div>
           </div>
         </div>
       </div>

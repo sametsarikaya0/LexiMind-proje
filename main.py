@@ -70,6 +70,7 @@ class TrainModelRequest(BaseModel):
     epochs: int = Field(default=40, ge=2, le=100, description="Eğitim döngüsü (epoch) sayısı", json_schema_extra={"example": 40})
     seed: int = Field(default=42, ge=0, le=999999, description="Rastgelelik tohumu (seed)", json_schema_extra={"example": 42})
     custom_text: Optional[str] = Field(default=None, max_length=100000, description="Opsiyonel özel Türkçe eğitim metni")
+    append_to_default: Optional[bool] = Field(default=True, description="Özel metni varsayılan Türkçe derleme ekle (True) veya sadece özel metni kullan (False)")
 
 # ----------------- API Endpoint'leri -----------------
 
@@ -282,7 +283,11 @@ def train_model_endpoint(payload: TrainModelRequest):
             "workers": 2,
             "compute_loss": True
         }
-        report = nlp_service.train_custom_model(params=params, custom_text=payload.custom_text)
+        report = nlp_service.train_custom_model(
+            params=params,
+            custom_text=payload.custom_text,
+            append_to_default=payload.append_to_default if payload.append_to_default is not None else True
+        )
         return report
     except ValueError as ve:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(ve))

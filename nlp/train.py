@@ -187,7 +187,8 @@ def train_word2vec_model(
     corpus_path: str = DEFAULT_CORPUS_PATH,
     model_save_path: str = DEFAULT_MODEL_PATH,
     params: Dict[str, Any] = None,
-    custom_sentences: List[List[str]] = None
+    custom_sentences: List[List[str]] = None,
+    append_to_default: bool = True
 ) -> Dict[str, Any]:
     """
     Türkçe derlem veya kullanıcı tarafından sağlanan özel cümleler üzerinde
@@ -200,16 +201,28 @@ def train_word2vec_model(
     start_time = time.time()
 
     # 1. Cümleleri hazırla
-    if custom_sentences and len(custom_sentences) >= 2:
-        sentences = custom_sentences
-        all_tokens = [tok for s in sentences for tok in s]
-        corpus_stats = {
-            "raw_lines_count": len(custom_sentences),
-            "clean_sentences_count": len(custom_sentences),
-            "total_tokens_count": len(all_tokens),
-            "unique_words_count": len(set(all_tokens)),
-            "source": "custom_user_corpus"
-        }
+    if custom_sentences and len(custom_sentences) >= 1:
+        if append_to_default:
+            default_sentences, _ = load_and_clean_corpus(corpus_path)
+            sentences = default_sentences + custom_sentences
+            all_tokens = [tok for s in sentences for tok in s]
+            corpus_stats = {
+                "raw_lines_count": len(sentences),
+                "clean_sentences_count": len(sentences),
+                "total_tokens_count": len(all_tokens),
+                "unique_words_count": len(set(all_tokens)),
+                "source": "augmented_corpus"
+            }
+        else:
+            sentences = custom_sentences
+            all_tokens = [tok for s in sentences for tok in s]
+            corpus_stats = {
+                "raw_lines_count": len(custom_sentences),
+                "clean_sentences_count": len(custom_sentences),
+                "total_tokens_count": len(all_tokens),
+                "unique_words_count": len(set(all_tokens)),
+                "source": "custom_user_corpus"
+            }
     else:
         sentences, corpus_stats = load_and_clean_corpus(corpus_path)
         corpus_stats["source"] = "default_corpus"
