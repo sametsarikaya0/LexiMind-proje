@@ -1,0 +1,26 @@
+{
+  "benchmark_name": "Turkish Semantic Word Pair Evaluation Dataset (LexiMind-TR-Eval)",
+  "description": "Word2Vec modelinin Türkçe anlamsal yakınlık performansını ölçmek için hazırlanmış referans kelime çiftleri ve kategorik benzerlik seviyeleri.",
+  "pairs": [
+    { "word1": "doktor", "word2": "hekim", "expected_tier": "high", "expected_min_sim": 0.60, "category": "Eş / Çok Yakın Anlam" },
+    { "word1": "bilgisayar", "word2": "yazılım", "expected_tier": "high", "expected_min_sim": 0.50, "category": "Teknoloji" },
+    { "word1": "yapay", "word2": "zeka", "expected_tier": "high", "expected_min_sim": 0.60, "category": "Bilişim" },
+    { "word1": "öğrenci", "word2": "üniversite", "expected_tier": "high", "expected_min_sim": 0.45, "category": "Eğitim" },
+    { "word1": "hastane", "word2": "tedavi", "expected_tier": "high", "expected_min_sim": 0.50, "category": "Sağlık" },
+    { "word1": "güneş", "word2": "yıldız", "expected_tier": "high", "expected_min_sim": 0.45, "category": "Astronomi" },
+    { "word1": "deniz", "word2": "okyanus", "expected_tier": "high", "expected_min_sim": 0.50, "category": "Coğrafya" },
+    { "word1": "yazar", "word2": "edebiyat", "expected_tier": "high", "expected_min_sim": 0.45, "category": "Kültür" },
+    { "word1": "akıl", "word2": "zihin", "expected_tier": "high", "expected_min_sim": 0.50, "category": "Felsefe" },
+    { "word1": "para", "word2": "ekonomi", "expected_tier": "high", "expected_min_sim": 0.45, "category": "Finans" },
+    { "word1": "öğretmen", "word2": "ders", "expected_tier": "high", "expected_min_sim": 0.45, "category": "Eğitim" },
+    { "word1": "kanun", "word2": "hukuk", "expected_tier": "high", "expected_min_sim": 0.50, "category": "Adalet" },
+    { "word1": "bilgisayar", "word2": "kütüphane", "expected_tier": "medium", "category": "Bağlamsal İlişki" },
+    { "word1": "sağlık", "word2": "beslenme", "expected_tier": "medium", "category": "Sağlık" },
+    { "word1": "müzik", "word2": "sinema", "expected_tier": "medium", "category": "Sanat" },
+    { "word1": "bilgisayar", "word2": "felsefe", "expected_tier": "low", "category": "Farklı Alanlar" },
+    { "word1": "hastane", "word2": "güneş", "expected_tier": "low", "category": "İlişkisiz" },
+    { "word1": "para", "word2": "şiir", "expected_tier": "low", "category": "İlişkisiz" },
+    { "word1": "doktor", "word2": "coğrafya", "expected_tier": "low", "category": "İlişkisiz" },
+    { "word1": "yazılımcı", "word2": "orman", "expected_tier": "low", "category": "İlişkisiz" }
+  ]
+}

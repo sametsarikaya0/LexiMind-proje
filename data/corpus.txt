@@ -1,0 +1,409 @@
+doğal dil işleme yapay zeka ve makine öğrenmesi alanının en önemli dallarından biridir.
+yapay zeka sistemleri büyük veri kümeleri ve derin öğrenme modelleri kullanarak metinleri analiz eder.
+makine öğrenmesi algoritmaları verilerden desenler öğrenir ve tahminlerde bulunur.
+derin öğrenme sinir ağları mimarisi ile karmaşık dil modelleri oluşturur.
+büyük dil modelleri doğal dil işleme görevlerinde yüksek başarı ve doğruluk sergiler.
+bilgisayar mühendisliği ve yazılım geliştirme modern teknolojinin temel yapı taşlarıdır.
+yazılımcı ve mühendis python programlama dili ile veri analizi ve makine öğrenmesi modelleri geliştirir.
+algoritma ve veri yapıları bilgisayar biliminin temel prensiplerini oluşturur.
+sinir ağları katmanları ağırlıklar ve aktivasyon fonksiyonları ile eğitilir.
+vektör uzayı modelleri kelimelerin anlamsal ilişkilerini sayılarla ifade eder.
+word2vec kelimeleri sürekli vektör uzayında temsil eden güçlü bir nlp algoritmasıdır.
+skip-gram mimarisi hedef kelimeden çevre kelimeleri tahmin etmeye çalışır.
+cbow mimarisi ise bağlam kelimelerinden hedef kelimeyi tahmin etmeyi amaçlar.
+kosinüs benzerliği iki kelime vektörü arasındaki anlamsal açıyı ve benzerliği hesaplar.
+anlamsal benzerlik yakın anlamlı kelimelerin vektör uzayında birbirine yakın konumlanmasını sağlar.
+bilgisayar işlemci bellek ve ekran kartı gibi donanım bileşenlerinden oluşur.
+yazılım donanım üzerinde çalışan işletim sistemi ve uygulama programlarını kapsar.
+internet ağ sistemleri üzerinden veri transferi ve iletişim sağlar.
+veritabanı sistemleri büyük miktarda yapılandırılmış ve yapılandırılmamış veriyi saklar.
+siber güvenlik sistemleri ağları ve verileri siber saldırılara karşı korur.
+programlama dilleri arasında python veri bilimi ve yapay zeka alanında çok popülerdir.
+kodlama yazılım projelerinin başarılı ve sürdürülebilir olması için temiz mimari gerektirir.
+bilgisayar bilimleri teorik hesaplama ve pratik yazılım geliştirme süreçlerini inceler.
+sunucu ve istemci mimarisi web uygulamalarının temel iletişim modelidir.
+bulut bilişim yüksek işlem gücü ve ölçeklenebilir depolama çözümleri sunar.
+üniversite öğrencileri fakülte ve bölümlerde akademik eğitim alır.
+öğretmen ve profesör öğrencilere ders anlatır ve araştırmalara rehberlik eder.
+öğrenci sınav ve ödev hazırlıklarında kütüphane ve ders çalışma salonlarını kullanır.
+akademik araştırma makale ve tez yazımı bilimsel ilerlemenin anahtarıdır.
+laboratuvar ortamında bilimsel deneyler ve ölçümler gerçekleştirilir.
+enstitü ve akademi yüksek lisans ve doktora programları ile bilim insanı yetiştirir.
+ders notları sınav başarı oranını artırmada öğrencilere rehberlik eder.
+kütüphane binlerce kitap dergi ve bilimsel kaynağa ev sahipliği yapar.
+öğrenciler mezun olduktan sonra akademik kariyer veya sektörel iş fırsatlarını değerlendirir.
+bilim insanları hipotezler kurar deneyler yapar ve sonuçları yayınlar.
+eğitim sistemi bireylerin zihinsel ve mesleki gelişimini destekler.
+okul ve sınıf ortamı öğrencilerin sosyal ve bilişsel yeteneklerini geliştirir.
+anne baba ve çocuklar aile birliğini ve sevgisini oluşturur.
+aile toplumun en küçük ve en değerli sosyal yapı taşıdır.
+kardeşler çocukluk döneminde oyun oynar ve birlikte büyür.
+arkadaş ve dost zor zamanlarda insana destek ve güven verir.
+komşu ve akraba ilişkileri sosyal dayanışmayı ve toplumsal barışı güçlendirir.
+insan sosyal bir varlık olarak toplum içinde iletişim ve işbirliği kurar.
+kadın ve erkek eşit haklara sahip saygın bireyler olarak toplumu oluşturur.
+genç ve yaşlı kuşaklar arasındaki deneyim aktarımı kültürel sürekliliği sağlar.
+birey toplum kurallarına uyarak huzurlu ve güvenli bir yaşam sürer.
+vatandaş ve halk demokratik haklarını kullanarak ülkenin geleceğini belirler.
+millet ortak tarih kültür ve değerler etrafında birleşir.
+sevgi saygı ve hoşgörü insanlar arasındaki iletişimi güzelleştirir.
+mutluluk sevinç ve neşe insanın ruhuna enerji ve canlılık katar.
+huzur ve sükunet stresli günlerin ardından zihni dinlendirir.
+umut ve heyecan geleceğe yönelik hedeflere ulaşma arzusunu besler.
+sevgi ve şefkat insan kalbini yumuşatır ve ilişkileri güçlendirir.
+korku ve endişe belirsizlik durumlarında ortaya çıkan doğal savunma mekanizmalarıdır.
+kaygı ve stres psikolojik sağlığı olumsuz etkileyebilen yoğun duygulardır.
+üzüntü keder ve hüzün kayıp ve zorluk dönemlerinde hissedilen duygulardır.
+öfke ve kızgınlık kontrol edilmediğinde çatışma ve pişmanlığa yol açabilir.
+duygu ve hisler insan davranışlarının temel yönlendiricileridir.
+ruh hali ve psikoloji dengeli bir yaşam için dikkatle korunmalıdır.
+sabır ve metanet zorlukların üstesinden gelmede insana güç verir.
+para ve ekonomi piyasalardaki üretim tüketim ve ticaret dengelerini inceler.
+finansal piyasalar borsa hisse senedi ve yatırım araçlarını kapsar.
+banka mevduat kredi ve fon yönetimi gibi finansal hizmetler sunar.
+yatırım ve sermaye şirketlerin büyümesi ve istihdam yaratması için gereklidir.
+ticaret ve pazar alıcı ve satıcıların buluştuğu ekonomik ekosistemlerdir.
+enflasyon fiyatlar genel düzeyinin sürekli artması durumudur.
+faiz ve döviz kurları makroekonomik istikrarı doğrudan etkileyen göstergelerdir.
+gelir ve gider dengesi aile bütçesi ve şirket maliyesi için hayati önem taşır.
+bütçe ve vergi politikaları kamu harcamalarını ve kamu yatırımlarını finanse eder.
+maliyet kâr ve zarar hesaplamaları işletmelerin finansal sağlığını gösterir.
+üretim sanayi ve ihracat bir ülkenin ekonomik gücünü artırır.
+ithalat ve cari açık dış ticaret dengesini belirleyen unsurlardır.
+sağlık ve tıp insan hayatının kalitesini korumak ve geliştirmek için çalışır.
+doktor ve hekim hastaları muayene eder teşhis koyar ve tedavi planlar.
+hemşire hasta bakımını titizlikle yürütür ve ilaç takibini yapar.
+hastane ve klinik modern tıbbi cihazlar ile sağlık hizmeti sunar.
+tedavi ve ilaç süreçleri hastalıkların iyileşmesinde temel rol oynar.
+ameliyat ve cerrahi operasyon uzman cerrahlar tarafından steril koşullarda yapılır.
+teşhis ve tanı erken dönemde konulduğunda tedavi başarısı belirgin şekilde artar.
+virüs ve bakteri mikroskobik organizmalar olup çeşitli enfeksiyonlara neden olabilir.
+enfeksiyon hastalıkları antibiyotik ve antiviral tedavilerle kontrol altına alınır.
+aşı ve bağışıklık sistemi vücudu zararlı mikroplara karşı korur.
+vitamin mineral ve dengeli beslenme bağışıklığı güçlendirir.
+spor egzersiz ve sağlıklı yaşam tarzı kronik hastalıkları önler.
+sanat ve estetik insan ruhunun ve yaratıcılığının en üst ifadesidir.
+müzik melodi ve ritim ile duyguları en doğrudan anlatan evrensel bir dildir.
+resim ve heykel görsel sanatların köklü ve etkileyici dallarıdır.
+tiyatro ve sahne oyuncuların canlı performansıyla izleyicilere duygu aktarır.
+sinema ve film görsel efektler senaryo ve oyunculuk ile hikayeler anlatır.
+edebiyat roman hikaye ve şiir gibi türlerle dilin zenginliğini sergiler.
+şair dizelerinde derin duyguları ve imgeleri ustalıkla işler.
+yazar karakterler ve olay örgüleri ile sürükleyici romanlar kaleme alır.
+şarkı ve konser binlerce müzikseveri aynı melodi altında birleştirir.
+müze ve sergi salonları tarihi ve sanatsal eserleri ziyaretçilerle buluşturur.
+kültür ve gelenek bir toplumun kuşaktan kuşağa aktardığı mirastır.
+güneş gökyüzünde ışık ve ısı kaynağı olarak hayatı besler.
+ay ve yıldızlar gece karanlığında gökyüzünü aydınlatır.
+bulut yağmur kar ve dolu atmosferdeki su döngüsünün parçalarıdır.
+fırtına ve rüzgar hava basıncı farklarından kaynaklanan meteorolojik olaylardır.
+deniz ve okyanus dünya yüzeyinin büyük bölümünü kaplayan su kütleleridir.
+nehir ve ırmak dağlardan doğup vadilerden geçerek denizlere dökülür.
+dağ orman ve yaylalar zengin flora ve faunaya ev sahipliği yapar.
+ağaç ve yeşil alanlar fotosentez yoluyla oksijen üretir ve havayı temizler.
+toprak ve su tarımsal üretim ve ekosistemin sürdürülebilirliği için vazgeçilmezdir.
+iklim ve mevsimler ilkbahar yaz sonbahar ve kış döngüsüyle doğayı yeniler.
+çevre kirliliği ve küresel ısınma ekolojik dengeyi tehdit eden büyük sorunlardır.
+türkiye avrupa ve asya kıtaları arasında stratejik bir coğrafi köprüdür.
+ankara türkiye cumhuriyetinin başkenti ve idari merkezidir.
+istanbul boğazı tarihi yapıları ve kültürel zenginliği ile dünyanın en önemli şehirlerindendir.
+izmir ege bölgesinin ticaret kültür ve liman merkezidir.
+bursa osmanlı imparatorluğunun tarihi başkentlerinden biri olup sanayi ve tarımıyla öne çıkar.
+antalya akdeniz kıyısında turizm güneş ve deniz cennetidir.
+şehir ve kent yaşamı modern altyapı ve ulaşım ağlarıyla gelişir.
+başkent kamu kurumları ve diplomatik temsilciliklerin merkezidir.
+ülke ve dünya coğrafyası farklı kültürler ve medeniyetlerle doludur.
+kıta ve bölgeler zengin tarihi ve coğrafi çeşitlilik barındırır.
+felsefe düşünce mantık ve akıl ilkeleri üzerine kurulu sorgulayıcı bir disiplindir.
+zihin bilinç ve beyin insan idrakinin ve bilişsel süreçlerinin merkezidir.
+varlık ve bilgi ontoloji ve epistemolojinin temel araştırma konularıdır.
+hakikat ve gerçeklik felsefi tartışmalarda daima sorgulanan kavramlardır.
+etik ve ahlak insan eylemlerinin doğru ve adil olup olmadığını irdeler.
+kavram ve anlam dil felsefesinde kelimelerin dünyayı nasıl temsil ettiğini açıklar.
+fikir ve teori bilimsel ve felsefi gelişmelerin başlangıç noktasıdır.
+yöntem ve metodoloji güvenilir bilgiye ulaşmanın sistematik yoludur.
+eleştiri ve şüphe dogmatik kabulleri yıkarak rasyonel düşünceyi geliştirir.
+adalet ve özgürlük toplumsal düzenin ve insan onurunun temel direkleridir.
+erdem ve bilgelik insan hayatına anlam ve derinlik katar.
+kelime vektörü sözcükleri n boyutlu uzayda koordinatlar olarak modeller.
+vektörler arasındaki açı kosinüs fonksiyonu ile normalize edilir.
+anlamsal yakınlık bağlamsal dağılım hipotezine dayanır.
+dağılımsal semantik kelimelerin birlikte geçtiği bağlamlardan anlam türetir.
+türkçe sondan eklemeli bir dil olduğu için morfolojik analiz önemlidir.
+kök ve ek ayrımı sözcük dağarcığı patlamasını engellemeye yardımcı olur.
+küçük harfe dönüştürme ve noktalama işaretlerini temizleme ön işleme adımlarıdır.
+stop words yani etkisiz kelimeler anlamsal değeri düşük olan bağlaç ve edatlardır.
+tokenization metni bağımsız kelime birimlerine ve belirteçlere ayırır.
+sözlük dağarcığı modelin eğitim sırasında gördüğü tüm benzersiz sözcükleri içerir.
+frekans dağılımı metinde en çok yinelenen kelimelerin sıklığını belirler.
+semantik analiz metin madenciliği ve duygu analizinin omurgasıdır.
+vektör uzayında kral ile kraliçe kadın ile erkek arasındaki mesafe geometrik olarak korunur.
+benzerlik metriği iki kelimenin vektörlerinin iç çarpımı bölü normları çarpımıdır.
+model eğitimi parametreleri öğrenme oranını ve sinir ağı ağırlıklarını optimize eder.
+makine öğrenmesi modelleri test veri seti üzerinde doğrulanır ve performans raporlanır.
+derin öğrenme kütüphaneleri vektör hesaplamalarını donanım üzerinde hızlandırır.
+doğal dil işleme kütüphaneleri türkçe dil desteği ile zenginleştirilmektedir.
+akademik çalışmalarda kelime vektörleri temsil öğrenmenin temel başarısı kabul edilir.
+leximind semantik zeka laboratuvarı türkçe kelimelerin anlam haritasını çıkartır.
+türkçe sözlük ve derlem büyüdükçe kelime vektörlerinin anlamsal doğruluğu katlanarak artar.
+kelimeler arasındaki benzerlik derecesi kosinüs benzerliği formülü ile sıfır ile bir veya eksi bir ile bir arasında ölçülür.
+vektör uzayında anlamsal mesafe anlam zıtlığını veya kavramsal uzaklığı yansıtır.
+bilgisayar bilimleri yapay zeka doğal dil işleme ve veri analitiği geleceğin meslekleridir.
+öğrenci akademisyen ve araştırmacılar leximind ile türkçe kelime ilişkilerini keşfeder.
+kütüphane araştırma laboratuvar ve üniversite bilimsel üretkenliğin kalbidir.
+sağlık tıp ve hastane insanlığın en temel güvencesidir.
+sanat kültür edebiyat ve müzik toplumların ruhunu zenginleştirir.
+doğa çevre orman ve nehir ekolojik dengemizin teminatıdır.
+finans ekonomi para ve yatırım refahın sürdürülebilirliğini sağlar.
+aile sevgi dostluk ve dayanışma insani erdemlerimizin köşe taşlarıdır.
+felsefe akıl mantık ve bilim aydınlık geleceğimizin pusulasıdır.
+hukuk sistemi adaletin eşit ve tarafsız biçimde sağlanmasını güvence altına alır.
+mahkeme yargıç ve savcı anayasa ve kanun çerçevesinde adalet dağıtır.
+avukat müvekkilini savunur ve hukuki haklarını korumak için dilekçe hazırlar.
+insan hakları demokrasi ve hukukun üstünlüğü çağdaş devletlerin temelidir.
+kanun tüzük ve yönetmelik toplumsal düzeni ve vatandaşların haklarını düzenler.
+ceza hukuku ve medeni hukuk toplumsal uyuşmazlıkları barışçıl yollarla çözer.
+hakim delilleri inceler tanıkları dinler ve adil bir karar verir.
+fizik evrenin temel yasalarını madde enerji kuvvet ve hareketi inceler.
+kimya atomlar moleküller ve elementlerin kimyasal tepkimelerini araştırır.
+biyoloji canlı organizmaların hücre yapısını genetik kodunu ve evrimini açıklar.
+matematik mantıksal akıl yürütme cebir geometri ve sayılar teorisidir.
+astronomi gök cisimlerini gezegenleri yıldızları ve galaksileri teleskopla gözlemler.
+jeoloji yer kabuğunun yapısını kayaçları ve deprem fay hatlarını inceler.
+deney gözlem ve ölçüm pozitif bilimlerin temel araştırma metodolojisidir.
+bilimsel kuramlar hipotezlerin laboratuvar ortamında test edilmesiyle doğrulanır.
+akıllı telefon tablet ve dizüstü bilgisayar taşınabilir mobil teknolojilerdir.
+işletim sistemi donanım kaynaklarını yönetir ve kullanıcıya arayüz sunar.
+grafik işlemcisi ve yapay zeka hızlandırıcıları derin öğrenme eğitimini hızlandırır.
+büyük veri analitiği milyonlarca veriden anlamlı içgörüler ve tahminler üretir.
+blokzincir dağıtık defter teknolojisi ile güvenli ve şeffaf kayıt tutar.
+nesnelerin interneti akıllı cihazların birbirleriyle kablosuz haberleşmesini sağlar.
+otonom araçlar sensörler lidar kameralar ve yapay zeka ile sürücüsüz yol alır.
+doğal dil anlama ve konuşma tanıma sesli asistanların temel bileşenleridir.
+türk dili zengin tarihi söz varlığı ve köklü edebi geleneğiyle öne çıkar.
+orhun yazıtları ve kutadgu bilig türk edebiyatının ilk yazılı kaynaklarındandır.
+divanu lugati-t-türk kaşgarlı mahmud tarafından kaleme alınmış ilk türkçe sözlüktür.
+yunus emre ve mevlevi felsefesi sevgi hoşgörü ve tasavvufi düşünceyi yaymıştır.
+nasreddin hoca fıkraları mizah yoluyla toplumsal eleştiri ve dersler sunar.
+ömer seyfettin ve reşat nuri güntekin realist öykü ve romanlarıyla tanınır.
+türkçe sondan eklemeli yapısıyla yeni sözcük türetme konusunda büyük esnekliğe sahiptir.
+atasözleri ve deyimler milletin yüzyıllar boyunca biriktirdiği hayat tecrübesidir.
+masal ve destan halk kültürünün sözlü edebiyat yoluyla kuşaktan kuşağa aktarımıdır.
+spor düzenli egzersiz ve fiziksel aktivite kalp sağlığını güçlendirir.
+futbol basketbol voleybol ve atletizm dünyada en çok ilgi gören spor dallarıdır.
+olimpiyat oyunları dünyanın dört bir yanından sporcuları barış için bir araya getirir.
+kondisyon antrenman ve disiplinli çalışma başarıya ulaşmanın yoludur.
+dengeli beslenme protein karbonhidrat vitamin ve su dengesini gözetir.
+uyku düzeni ve zihinsel dinlenme sporcuların performansını doğrudan etkiler.
+sağlıklı bir beden ve dinç bir zihin insan yaşamının kalitesini yükseltir.
+doğal dil işleme metin madenciliği ve anlamsal çıkarım için makine öğrenmesi modellerini kullanır.
+büyük dil modelleri transformer mimarisi ve dikkat mekanizması ile eğitilen devasa yapay zeka sistemleridir.
+vektör uzayı temsili kelimeleri çok boyutlu sürekli uzayda geometrik noktalar olarak konumlandırır.
+word2vec algoritması kelimelerin bağlamsal dağılımını kullanarak dağıtık gösterimler üretir.
+kosinüs benzerliği iki kelime vektörü arasındaki açının kosinüsünü alarak anlamsal yakınlığı sıfır ile bir arasında ölçer.
+öklid mesafesi iki vektör arasındaki geometrik uzaklığı hesaplayarak benzerlik analizi sunar.
+skip-gram mimarisi özellikle az geçen nadir kelimelerin temsilinde cbow modeline göre daha başarılıdır.
+sürekli kelime çantası modeli yani cbow çevre kelimelerden hedef kelimeyi tahmin ederek daha hızlı eğitilir.
+negatif örnekleme kelime vektörlerinin güncellenmesinde hesaplama karmaşıklığını önemli ölçüde azaltır.
+kelime gömme yani word embedding metinleri sinir ağlarının anlayabileceği sayısal matrislere dönüştürür.
+morfolojik analiz türkçe gibi sondan eklemeli dillerde kök ve eklerin ayrıştırılmasında kritik rol oynar.
+kelime dağarcığı modelin eğitim derleminde karşılaştığı ve vektör atadığı benzersiz sözcüklerin bütünüdür.
+anlamsal ilişki benzer bağlamlarda geçen sözcüklerin vektör uzayında kümelenmesini sağlar.
+vektör aritmetiği kral eksi erkek artı kadın eşittir kraliçe örneğinde olduğu gibi analojileri çözer.
+temel bileşenler analizi yani pca yüksek boyutlu kelime vektörlerini iki boyuta indirgeyerek görselleştirir.
+bilgisayar mühendisi yazılım mimarisi veri tabanı yönetimi ve algoritma optimizasyonu üzerine çalışır.
+yazılım geliştirici python c++ java ve javascript dilleri ile modern uygulamalar kodlar.
+algoritma karmaşıklığı zaman ve bellek kullanımı açısından big o gösterimi ile analiz edilir.
+veri yapıları dizi bağlı liste yığıt kuyruk ağaç ve çizge gibi bellek organizasyonlarını kapsar.
+ilişkisel veritabanı sql sorguları tablolar birincil anahtarlar ve indeksleme ile veri tutarlılığı sağlar.
+ilişkisel olmayan veritabanı nosql doküman ve anahtar değer modelleriyle büyük veriyi depolar.
+işletim sistemi çekirdeği bellek yönetimi işlemci zamanlama ve dosya sistemlerini denetler.
+mikroişlemci aritmetik mantık birimi kontrol birimi ve önbellek ile komutları sırayla çalıştırır.
+grafik işlem birimi yani gpu matris çarpımları ve derin öğrenme tensör hesaplamalarında yüksek hız sunar.
+bulut bilişim sanallaştırma mikroservisler ve docker konteynerleri ile esnek dağıtım imkanı tanır.
+siber güvenlik uzmanları şifreleme güvenlik duvarı ve sızma testleri ile sistemleri korur.
+açık kaynak yazılımlar github üzerinden dünya çapında geliştiricilerin işbirliğiyle büyür.
+web geliştirme ön uç arayüz tasarımı ve arka uç api mimarisi olmak üzere iki ana kola ayrılır.
+fastapi python tabanlı yüksek performanslı asenkron ve otomatik dökümantasyon sunan modern bir web çatısıdır.
+flask hafif mikro mimarisi ile python projelerinde hızlı prototip ve api geliştirmeye uygundur.
+gensim python ekosisteminde word2vec doc2vec ve konu modelleme için optimize edilmiş güçlü bir kütüphanedir.
+üniversite öğrencileri amfilerde ders dinler laboratuvarda deney yapar ve kütüphanede çalışır.
+öğretim üyesi profesör doçent ve doktor öğretim üyesi unvanlarıyla akademik araştırmalar yürütür.
+araştırma görevlisi akademik çalışmalarda profesörlere destek verir ve lisansüstü tez hazırlar.
+akademik tez özgün hipotezler literatür taraması ve deneysel bulgular ışığında savunulur.
+hakemli dergi makaleleri alanında uzman bilim insanlarının titiz incelemesinden geçerek yayınlanır.
+rektörlük ve dekanlık üniversitenin idari ve akademik karar mekanizmalarını yönetir.
+bilimsel konferans ve sempozyum araştırmacıların yeni bulgularını paylaştığı akademik platformlardır.
+burs ve araştırma fonları başarılı öğrencilerin ve projelerin maddi olarak desteklenmesini sağlar.
+akademik etik intihalden kaçınmayı dürüst alıntı yapmayı ve bilimsel tarafsızlığı emreder.
+laboratuvar ortamında mikroskop spektrometre ve ölçüm cihazları ile hassas deneyler yapılır.
+öğrenci toplulukları robotik yapay zeka edebiyat ve tiyatro kulüplerinde sosyal projeler üretir.
+yüksek lisans ve doktora programları derinlemesine uzmanlaşma ve bilimsel metodoloji kazandırır.
+akademik danışman öğrencilerin ders seçimleri ve kariyer planlamaları konusunda rehberlik eder.
+tıp fakültesi mezunu hekim hastanede hastaları muayene eder teşhis koyar ve tedavi uygular.
+doktor ve hemşire acil servis poliklinik ve yoğun bakımda hastaların sağlığı için çalışır.
+hastane ameliyathane laboratuvar ve radyoloji servisleri ile kapsamlı sağlık hizmeti verir.
+cerrah cerrahi operasyon ile organ ve dokulardaki patolojik durumları tedavi eder.
+eczacı doktor reçetesinde yazılı ilaçları hazırlar ve hastaya doğru kullanımını açıklar.
+ilaç ve antibiyotik bakteriyel enfeksiyonları durdururken aşılama bağışıklık sistemini güçlendirir.
+genetik biliminde dna rna ve protein sentezi hücrenin kalıtım ve yaşam şifresini belirler.
+insan anatomisi iskelet kas dolaşım sinir ve solunum sistemlerinin uyum içinde çalışmasını açıklar.
+kalp ve damar sağlığı düzenli egzersiz düşük kolesterol ve dengeli beslenme ile korunur.
+beyin ve sinir sistemi milyarlarca nöron ve sinaps bağlantısı ile düşünceyi ve hafızayı yönetir.
+psikolog ve psikiyatri uzmanı ruh sağlığı depresyon kaygı ve travma tedavisinde terapi uygular.
+beslenme ve diyetetik uzmanı sağlıklı yaşam için vitamin mineral protein ve su dengesini önerir.
+aşı bağışıklık sistemine mikropları tanıtarak antikor üretimini tetikler ve salgınları önler.
+türk dili ural altay dil ailesine mensup zengin söz varlığına sahip köklü bir dünya dilidir.
+orhun abideleri tonyukuk kültigin ve bilge kağan yazıtlarıyla türkçenin ilk edebi anıtlarıdır.
+divanü lügati't-türk kaşgarlı mahmud tarafından türkçenin arapça kadar üstün bir dil olduğunu kanıtlamak için yazılmıştır.
+kutadgu bilig yusuf has hacib tarafından devlet yönetimi ahlak ve mutluluk bilgisi üzerine kaleme alınmıştır.
+yunus emre insan sevgisi hoşgörü ve duru türkçesiyle tasavvuf edebiyatının zirve ismidir.
+mevlana celaleddin rumi mesnevi adlı şaheseriyle evrensel sevgi ve kardeşlik mesajları vermiştir.
+ahmet hamdi tanpınar huzur romanında doğu ile batı arasındaki kültürel gerilimi ve estetiği işler.
+saatleri ayarlama enstitüsü bürokrasiyi modernleşme çabalarını ve zaman algısını hicveden usta bir romandır.
+yaşar kemal ince memed romanıyla çukurova insanının tabiatla ve ağalık düzeniyle mücadelesini destanlaştırır.
+nazım hikmet serbest nazım ve lirik şiirleriyle dünya edebiyatında saygın bir yer edinmiştir.
+orhan veli kanık oktay rifat ve melih cevdet anday garip akımı ile şiiri sokağa ve sade insana taşımıştır.
+türk dil kurumu türkçenin zenginliğini ortaya koymak ve yabancı kelimelerin istilasına karşı korumak için kurulmuştur.
+atasözü ve deyim yüzyılların hayat tecrübesini derin bir bilgelikle kısa ve öz biçimde aktarır.
+masal tekerleme ve halk hikayeleri sözlü edebiyat geleneğinin çocuklara aktardığı kültürel miraslardır.
+hukuk kuralları toplumda düzeni güveni ve adaleti sağlamak amacıyla anayasa ve kanunlarla belirlenir.
+bağımsız mahkemeler hakimler ve savcılar adil yargılanma hakkı çerçevesinde karar verir.
+avukat müvekkilinin haklarını savunmak ve hukuki süreçleri takip etmekle yükümlüdür.
+anayasa devletin temel organlarını ve vatandaşların vazgeçilmez temel hak ve hürriyetlerini güvenceye alır.
+ceza hukuku suç teşkil eden fiilleri ve bunlara uygulanacak yaptırımları düzenler.
+medeni hukuk kişiler hukuku aile hukuku miras hukuku ve eşya hukukunu kapsar.
+demokrasi kuvvetler ayrılığı hukukun üstünlüğü ve çoğulcu katılım ilkelerine dayanır.
+insan hakları evrensel bildirgesi ırk din dil ayrımı gözetmeksizin herkesin onurunu ve eşitliğini tanır.
+meclis milletvekilleri halkın iradesini temsil ederek kanun teklifleri hazırlar ve yasalaştırır.
+sosyal adalet kaynakların dengeli dağıtılması ve dezavantajlı bireylerin korunması esasına dayanır.
+felsefe varlık bilgi ve ahlak üzerine eleştirel sorular sorarak hakikati arama çabasıdır.
+epistemoloji bilginin kaynağını sınırlarını doğruluğunu ve yöntemlerini inceler.
+ontoloji varlığın doğasını tözünü zaman ve mekan içindeki varoluşunu sorgular.
+etik iyi ve kötü doğru ve yanlış erdem ve vicdan gibi ahlaki kavramları değerlendirir.
+mantık doğru akıl yürütme tümdengelim tümevarım ve analoji kurallarını belirler.
+sokrates sorgulanmamış bir hayatın yaşanmaya değer olmadığını savunarak diyalektik yöntemi geliştirmiştir.
+platon idealar dünyası ile gölgeler dünyası arasındaki ayrımı ünlü mağara alegorisi ile açıklar.
+aristoteles mantığın kurucusu olarak kategoriler ve tasımlar üzerinden sistematik felsefe yapmıştır.
+farabi el-medinetü'l-fazıla eserinde erdemli şehri ve ideal devlet yöneticisini tasvir etmiştir.
+immanuel kant saf aklın eleştirisi eserinde aklın sınırlarını ve ahlakın kategorik buyruğunu incelemiştir.
+özgür irade ve determinizm insanın kararlarında ne derece bağımsız olduğunu tartışır.
+evren milyarlarca galaksi yıldız kümesi gezegen ve kara delikten oluşan sonsuz bir kozmostur.
+samanyolu galaksisi güneş sistemi ile birlikte yüz milyarlarca yıldıza ev sahipliği yapar.
+güneş sistemimizde merkür venüs dünya mars jüpiter satürn uranüs ve neptün bulunur.
+ay dünyanın tek doğal uydusu olup denizlerde gelgit olaylarını meydana getirir.
+james webb ve hubble uzay teleskopları derin uzayın ve ilk galaksilerin görüntülerini yakalar.
+yerçekimi kütleli cisimlerin birbirini çekmesini sağlayan temel fiziksel kuvvettir.
+dünyanın manyetik alanı atmosferi güneş rüzgarlarından ve zararlı kozmik radyasyondan korur.
+okyanus ve denizler gezegenin su döngüsünü iklimini ve zengin biyolojik çeşitliliğini besler.
+akarsu nehir ve göller tatlı su kaynakları olarak tarım ve insan yaşamı için vazgeçilmezdir.
+dağ orman ve vadi yaban hayatının dengesini ve ekolojik çeşitliliği korur.
+iklim değişikliği ve küresel ısınma sera gazı emisyonlarının azaltılmasını ve yenilenebilir enerjiye geçişi zorunlu kılar.
+güneş enerjisi rüzgar türbinleri ve hidroelektrik santraller temiz ve sürdürülebilir enerji üretir.
+ekonomi sınırlı kaynakların toplumun ihtiyaçlarını karşılamak üzere nasıl dağıtılacağını inceler.
+merkez bankası para politikasını yönetir fiyat istikrarını sağlar ve enflasyonu düşürmeyi hedefler.
+enflasyon mal ve hizmet fiyatlarının genel düzeyindeki sürekli artışı ifade eder.
+faiz oranları yatırımları tüketimi ve tasarruf tercihlerini doğrudan etkileyen temel finansal göstergedir.
+borsa şirketlerin hisse senetlerinin alınıp satıldığı ve sermaye piyasalarının çalıştığı kurumsal pazardır.
+yatırımcı portföyünü çeşitlendirerek hisse senedi tahvil altın ve döviz arasında risk dengesi kurar.
+ihracat ülkenin ürettiği ürünleri yurt dışına satması ithalat ise yabancı malların ülkeye getirilmesidir.
+dış ticaret dengesi ihracatın ithalatı karşılama oranı ve cari denge üzerinde belirleyicidir.
+girişimcilik yenilikçi fikirleri karlı ve sürdürülebilir iş modellerine dönüştürme cesaretidir.
+banka mevduat toplar kredi kullandırır ve para transfer işlemlerine aracılık eder.
+sanat insanın estetik duygularını hayal gücünü ve dünya görüşünü dışa vurma biçimidir.
+klasik müzik senfoni konçerto ve opera gibi formlarla dinleyiciye derin bir armoni yaşatır.
+türk sanat müziği makamlar usuller ney kanun ud ve tambur gibi geleneksel enstrümanlarla icra edilir.
+türk halk müziği bağlama eşliğinde türküler bozlaklar ve ağıtlarla milletin duygusunu terennüm eder.
+sinema yönetmen senarist oyuncu ve görüntü yönetmeninin ortak vizyonuyla perdeye yansıyan yedinci sanattır.
+tiyatro oyuncuların sahnede seyirciyle kurduğu canlı ve doğrudan iletişimle etkileyici bir sanattır.
+resim tuval fırça ve renk paleti ile ışık ve gölgenin tuval üzerindeki estetik dansıdır.
+heykel mermer bronz ve kil gibi malzemelerin yontulmasıyla üç boyutlu sanatsal formlar oluşturur.
+mimarlık mekan tasarımı estetik oranlar ve dayanıklı strüktürler ile insanın yaşam alanını inşa eder.
+mimar sinan süleymaniye ve selimiye camileri ile dünya mimarlık tarihinin en büyük dehalarından biridir.
+ebru sanatı kitreli su üzerine serpilen boyaların kağıda aktarılmasıyla oluşan geleneksel bir süsleme sanatıdır.
+aile fertleri sevgi saygı ve dayanışma içinde birbirine destek olarak huzurlu bir yuva kurar.
+dostluk ve arkadaşlık dürüstlük ve fedakarlık temeline dayanan en kıymetli insani bağdır.
+komşuluk ilişkileri zor günlerde yardımlaşmayı ve bayramlarda sevinçleri paylaşmayı pekiştirir.
+hoşgörü farklı fikirlere ve yaşam tarzlarına saygı göstererek barış içinde bir arada yaşamayı sağlar.
+dürüstlük ve adalet güvenilir bir karakterin ve erdemli bir insanın en belirgin nitelikleridir.
+çevre temizliği geri dönüşüm ve doğaya saygı gelecek nesillere yaşanabilir bir dünya bırakmanın anahtarıdır.
+kitap okuma alışkanlığı kelime hazinesini zenginleştirir eleştirel düşünceyi ve empati yeteneğini besler.
+sağlıklı beslenme düzenli yürüyüş ve kaliteli uyku beden ve zihin sağlığını dinç tutar.
+öğrenci kalem ve defter ile ders notlarını dikkatle yazar.
+kalem mürekkep veya kurşun ile kağıt üzerine yazı yazmaya yarayan temel araçtır.
+tükenmez kalem dolma kalem ve kurşun kalem yazı yazarken farklı kullanım sunar.
+defter sayfaları çizgili kareli veya çizgisiz olarak not tutmak için kullanılır.
+öğretmen tahtada tebeşir ve kalem kullanarak ders anlatır öğrencilere bilgi aktarır.
+okul sınıflarında sıralar masalar sandalyeler ve yazı tahtası bulunur.
+kütüphane raflarında binlerce kitap ansiklopedi ve dergi sessizce okunmayı bekler.
+sınav haftasında öğrenciler kütüphanede toplanır ders çalışır ve notlarını paylaşır.
+üniversite amfisinde yüzlerce öğrenci profesörün verdiği dersi dinler.
+çanta içinde kitap defter kalem silgi ve cetvel taşınır.
+araba asfalt yol üzerinde motor gücüyle hızla ilerler.
+otomobil sürücüsü direksiyonu çevirir fren ve gaza basarak aracı yönlendirir.
+otobüs durakta yolcuları alır ve şehir içinde belirlenen güzergahta seyreder.
+tren demiryolu rayları üzerinde lokomotif çekişiyle vagonları taşır.
+yüksek hızlı tren ankara ve istanbul arasında hızlı ve konforlu ulaşım sağlar.
+uçak havalimanı pistinden gökyüzüne havalanır ve bulutların üzerinde uçar.
+pilot uçağın kokpitinde göstergeleri izler ve uçağı güvenle indirir.
+gemi limandan denize açılır dalgalar arasında rotasında ilerler.
+trafik lambası kırmızıda dur sarıda hazırlan yeşilde geç kuralını hatırlatır.
+şehir caddeleri sokakları kaldırımları ve parkları ile canlı bir yaşam alanıdır.
+köprü nehir üzerinden geçen araçları ve yayaları karşı kıyıya bağlar.
+ev ailenin huzur içinde yaşadığı güvenli sıcak bir yuvadır.
+ev odaları salon yatak odası mutfak banyo ve balkondan meydana gelir.
+masa üzerinde bilgisayar çalışma lambası kalemlik ve kitaplar yer alır.
+sandalye masanın yanında oturmak için tasarlanmış rahat bir mobilyadır.
+kapı anahtar ile kilitlenir ve zille çalınarak açılır.
+pencere odaya güneş ışığı ve temiz hava girmesini sağlar perde ile örtülür.
+bina tuğla beton ve demir ile sağlam temeller üzerine inşa edilir.
+apartman daireleri kat kat yükselir asansör ve merdivenle ulaşılır.
+ağaç kökleriyle toprağa tutunur gövdesi ve yeşil yapraklarıyla gölge verir.
+çiçek rengarenk taç yaprakları ve mis gibi kokusuyla doğayı süsler.
+orman binlerce ağaç bitki kuş ve vahşi hayvana ev sahipliği yapar.
+dağ dorukları karlarla kaplı heybetli zirveleriyle gökyüzüne yükselir.
+deniz masmavi suları kumsalları ve dalgalarıyla serinlik verir.
+göl dağların arasında biriken durgun ve tatlı su kütlesidir.
+nehir ve ırmak dağlardan doğar vadiler boyunca akarak denize dökülür.
+güneş gündüz dünyayı aydınlatır ve ısıtır hayatın temel enerji kaynağıdır.
+ay gece gökyüzünde hilal veya dolunay şeklinde parıldar.
+yıldızlar gece karanlığında gökyüzünde ışıldayan uzaktaki gök cisimleridir.
+yağmur bulutlardan damlalar halinde toprağa düşer bereketi getirir.
+kar kış mevsiminde beyaz taneler halinde yeryüzünü bembeyaz bir örtüyle kaplar.
+rüzgar havada esintiler oluşturur yaprakları hışırdatır ve değirmenleri döndürür.
+telefon arama yapmak mesaj göndermek ve internete bağlanmak için kullanılır.
+akıllı telefon dokunmatik ekranı ve mobil uygulamaları ile hayatı kolaylaştırır.
+bilgisayar işlemci bellek ve sabit disk ile verileri işler ve saklar.
+klavye harfler ve rakamlarla metin yazmaya yarayan donanım birimidir.
+fare ekrandaki imleci hareket ettirerek komut vermeyi sağlar.
+ekran yüksek çözünürlüklü pikseller ile görüntüleri ve grafikleri gösterir.
+internet dünya genelindeki bilgisayar ağlarını birbirine bağlayan devasa yapıdır.
+yazılım bilgisayarın çalışmasını sağlayan kod ve programlar bütünüdür.
+yapay zeka verileri analiz ederek öğrenen ve problem çözen akıllı sistemlerdir.
+algoritma adım adım takip edilen mantıksal işlem basamaklarıdır.
+doğal dil işleme metinleri anlayan özetleyen ve çeviren nlp alanıdır.
+word2vec kelimeleri vektör uzayında temsil eden güçlü bir yapay sinir ağıdır.
+kosinüs benzerliği iki kelime vektörünün anlamsal yakınlığını matematiksel olarak ölçer.
+sağlık insanın bedenen ve ruhen tam bir iyilik halinde olması durumudur.
+hastane acil servis poliklinik ve ameliyathane bölümleriyle şifa dağıtır.
+doktor hastaları dinler stetoskopla muayene eder ve teşhis koyar.
+hemşire hastaların bakımını üstlenir tansiyon ölçer ve iğne yapar.
+ilaç eczaneden reçete ile alınır ve hastalığın tedavisinde kullanılır.
+tedavi doktor kontrolünde ilaç dinlenme ve cerrahi yöntemlerle yürütülür.
+beslenme taze sebze meyve protein ve bol su tüketimiyle dengelenir.
+spor yürüyüş koşu ve egzersiz kalp sağlığını ve kasları güçlendirir.
+hukuk kuralları toplumda düzeni barışı ve adaleti sağlamak için konulur.
+adalet herkese hakkını teslim etmek eşit ve tarafsız davranmaktır.
+mahkeme salonunda hakim karar verir savcı iddia makamını temsil eder.
+avukat müvekkilini savunur haklarını korur ve yasal süreçleri takip eder.
+kanun meclis tarafından kabul edilir ve resmi gazetede yayınlanarak yürürlüğe girer.
+özgürlük bireyin başkalarının haklarına zarar vermeden kendi kararlarını almasıdır.
+demokrasi halkın kendi kendini yönettiği ve temel hakların korunduğu rejimdir.
+ekmek fırında un su maya ve tuz karıştırılarak pişirilen temel besindir.
+su insan vücudunun ve tüm canlıların yaşaması için en vazgeçilmez içecektir.
+çay demlikte demlenir ince belli bardakta sıcak sıcak içilir.
+kahve kavrulmuş çekirdeklerin öğütülmesiyle cezvede veya makinada pişirilir.
+süt kalsiyum bakımından zengin kemik gelişimini destekleyen faydalı bir içecektir.
+meyve elma armut muz çilek ve portakal gibi vitamin deposu tatlı gıdalardır.
+sebze domates salatalık biber ıspanak ve havuç gibi mineraller içeren besinlerdir.
+yemek ocakta tencerede veya fırında pişirilir sofrada ailece afiyetle yenir.

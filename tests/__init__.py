@@ -1,0 +1,1 @@
+"""LexiMind tests package."""
