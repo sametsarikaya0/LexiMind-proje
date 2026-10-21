@@ -38,6 +38,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Initialize SQLite database
+from app.database.db import init_db
+init_db()
+
+# Mount Modular Routers
+from app.api.auth_routes import router as auth_router
+from app.api.analysis_routes import router as analysis_router
+from app.api.user_routes import router as user_router
+
+app.include_router(auth_router)
+app.include_router(analysis_router)
+app.include_router(user_router)
+
 # ----------------- Pydantic İstek ve Yanıt Modelleri -----------------
 
 class SimilarWordRequest(BaseModel):
@@ -138,6 +151,18 @@ def get_corpus_statistics_endpoint():
         return nlp_service.get_corpus_statistics()
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Derlem istatistiği alınamadı: {str(e)}")
+
+
+@app.get("/api/words/{word}/similar", summary="Word Explorer — Semantik Komşular", tags=["Word2Vec"])
+def explore_word_get(word: str, top_n: int = Query(default=10, ge=1, le=30)):
+    """
+    Word Explorer için kelimenin en yakın komşularını getirir.
+    """
+    try:
+        result = nlp_service.get_similar_words(word=word, top_n=top_n)
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
 
 
 @app.post("/api/similarity", summary="En Benzer Kelimeleri Bul", tags=["Word2Vec"])

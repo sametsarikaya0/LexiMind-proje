@@ -1,0 +1,821 @@
+# MASTER PROJECT PROMPT — LEXIMIND
+## AI-Powered Academic Article Analysis & Turkish NLP Platform
+
+Act as a senior full-stack software engineer, Python NLP engineer, UI/UX designer, and application security specialist. Build a professional, modern, fully functional web application called **LexiMind**.
+
+This is a university Natural Language Processing (NLP) project. It must be a real working application, not just a visual prototype. The application must demonstrate genuine NLP processing with Python, Gensim Word2Vec, a backend API, document processing, and a polished frontend.
+
+Do not build a generic chatbot. The primary purpose is to analyze academic articles and automatically extract meaningful keywords and phrases.
+
+All user-facing interface text must be in **Turkish**. Use English for code identifiers, filenames, and technical documentation where appropriate.
+
+---
+
+## 1. PROJECT OBJECTIVES
+
+Build LexiMind with these core capabilities:
+
+1. Upload academic articles in PDF, DOCX, and TXT formats.
+2. Paste article text directly into the application.
+3. Extract and rank important keywords and multi-word phrases.
+4. Display keyword relevance, frequency, and supporting context where available.
+5. Use Gensim Word2Vec for semantic similarity and related-word discovery.
+6. Provide a clean analysis history for registered users.
+7. Allow results to be exported to CSV or TXT.
+8. Include functional user authentication and profile settings.
+9. Include Terms of Service, Privacy Policy, and Cookie Policy pages.
+10. Provide a responsive, accessible, polished dashboard suitable for a university project demonstration.
+
+The interface must look like a credible academic software product rather than a template or a simple student demo.
+
+## 2. REQUIRED TECHNOLOGY STACK
+
+Use the following architecture:
+
+### Frontend
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- A consistent icon library such as Lucide
+- Reusable components and modular page structure
+- Recharts only when a chart adds meaningful analytical value
+
+### Backend
+- Python
+- FastAPI
+- Pydantic for request validation
+- Uvicorn for development and deployment
+- Clear separation between API routes, NLP logic, document parsing, authentication, and database operations
+
+### NLP
+- Gensim Word2Vec for word embeddings and semantic similarity
+- A suitable keyword extraction approach such as YAKE, TextRank, or a properly configured TF-IDF method
+- Turkish text preprocessing
+- Turkish stop-word removal
+- Tokenization, punctuation cleanup, and candidate phrase extraction
+- Scikit-learn where appropriate
+- PDF parsing with a suitable library such as PyMuPDF
+- DOCX parsing with python-docx
+
+Important methodological requirement:
+**Word2Vec is not itself a complete single-document keyword extraction algorithm.** Use a suitable keyword extraction algorithm for the main task and use Gensim Word2Vec for meaningful semantic similarity features. Explain the distinction accurately in the project documentation.
+
+Do not claim that Word2Vec is trained on a large Turkish corpus unless the training data actually exists. Provide a clear model-loading or training pipeline, a small demonstration corpus for development, and an honest status message if the vocabulary is insufficient.
+
+### Database and authentication
+- Use SQLite for the initial local version, with a clean database abstraction that can support PostgreSQL later.
+- Store users, password hashes, analysis metadata, and analysis history where appropriate.
+- Use secure password hashing, such as Argon2 or bcrypt.
+- Use a secure authentication approach with appropriate session or token handling.
+- Never store plaintext passwords.
+- Keep secrets and credentials in environment variables.
+- Do not create fake authentication that merely redirects users without validating credentials.
+
+### Deployment
+- Keep the frontend and backend clearly separated.
+- Prepare the backend for deployment to a Python-compatible hosting provider.
+- Prepare the frontend for Vercel deployment.
+- Configure the frontend to use a configurable backend API URL.
+- Include environment-variable examples and clear deployment instructions.
+- Do not pretend that the backend is deployed simply because the frontend works locally.
+
+Do not put the Python NLP backend inside a frontend-only Vercel application. Treat frontend and backend as separate deployable services.
+
+---
+
+## 3. VISUAL DESIGN SYSTEM
+
+Create a premium, minimalist, dark academic technology interface.
+
+### Brand identity
+- Product name: LexiMind
+- Tagline: “Makalelerden Anlamlı Bilgiye.”
+- Secondary tagline: “Akıllı Makale Analizi ve Türkçe Doğal Dil İşleme”
+- Use a refined wordmark and a simple abstract symbol inspired by text, connected nodes, and semantic relationships.
+- Avoid cartoon mascots, excessive gradients, and generic AI-themed decorations.
+
+### Colors
+- Main background: deep charcoal, approximately #0B0D12
+- Sidebar: approximately #10131B
+- Card background: approximately #151923
+- Borders: muted slate
+- Primary accent: electric violet or indigo
+- Secondary accent: restrained cyan
+- Main text: off-white
+- Secondary text: muted gray
+- Success, warning, and error colors must be accessible and consistent.
+
+Use gradients sparingly. Maintain strong contrast and a calm academic atmosphere.
+
+### Layout
+- Persistent collapsible left sidebar on desktop
+- Compact top navigation with breadcrumbs and account menu
+- Spacious content areas
+- Clear page titles and concise descriptions
+- Rounded cards with subtle borders
+- Consistent spacing and typography
+- Professional empty states, loading states, success messages, and error messages
+- Responsive layout for mobile, tablet, and desktop
+- Smooth but restrained transitions
+- No horizontal overflow
+- No oversized decorative graphics that interfere with usability
+
+Use Turkish characters correctly throughout the interface.
+
+---
+
+## 4. MAIN APPLICATION NAVIGATION
+
+Create these pages and routes:
+
+1. Dashboard — `/dashboard`
+2. New Analysis — `/analysis/new`
+3. Analysis Results — `/analysis/:id`
+4. Analysis History — `/history`
+5. Word Explorer — `/words`
+6. Model Information — `/model`
+7. User Profile — `/profile`
+8. Settings — `/settings`
+9. Terms of Service — `/terms`
+10. Privacy Policy — `/privacy`
+11. Cookie Policy — `/cookies`
+12. Login — `/login`
+13. Register — `/register`
+14. Forgot Password — `/forgot-password`
+
+Provide a consistent sidebar and footer where appropriate.
+
+Navigation elements must work. Do not leave dead buttons or links with no action.
+
+---
+
+## 5. DASHBOARD
+
+Design a professional dashboard with:
+
+### Welcome section
+- “Merhaba, LexiMind'e hoş geldin.”
+- Brief description of the platform
+- Primary button: “Yeni Analiz Başlat”
+- Secondary button: “Analiz Geçmişim”
+
+### Statistics cards
+Display genuine statistics derived from the database:
+- Total analyses
+- Total extracted keywords
+- Processed documents
+- Most recently analyzed article
+
+For a new account, display zero values and helpful empty states. Never invent usage statistics.
+
+### Recent analyses
+Show a table or card list containing:
+- Article or document title
+- Analysis date
+- Number of extracted keywords
+- Processing status
+- View-results action
+
+### Quick actions
+- Upload an article
+- Paste text
+- Explore word relationships
+- View analysis history
+
+Do not display fabricated charts or statistics.
+
+---
+
+## 6. NEW ARTICLE ANALYSIS PAGE
+
+This is the most important feature of LexiMind.
+
+Create a polished article submission workspace with two input modes:
+
+### Mode A: Upload document
+- Drag-and-drop upload area
+- Browse files button
+- Accepted formats: PDF, DOCX, TXT
+- Maximum file size controlled by a configurable backend limit
+- Display selected filename, file size, and file type
+- Allow removing or replacing the file
+- Validate file extension and actual content where practical
+- Show useful Turkish validation messages
+
+### Mode B: Paste text
+- Large, comfortable text editor
+- Character and word count
+- Clear-text action
+- Optional article title field
+
+### Analysis settings
+Allow the user to select:
+- Number of keywords: 5, 10, 15, or 20
+- Include multi-word phrases: on/off
+- Show related words: on/off
+- Text language: Turkish, English, or automatic detection if implemented reliably
+
+### Main action
+Button label: “Makaleyi Analiz Et”
+
+On click:
+1. Validate the input.
+2. Send the content to the Python backend.
+3. Show a loading state with meaningful steps, such as “Metin okunuyor”, “Metin işleniyor”, and “Anahtar kelimeler çıkarılıyor”.
+4. Display real results returned by the backend.
+5. Show helpful error messages if processing fails.
+
+Do not simulate successful analysis using hardcoded sample keywords.
+
+---
+
+## 7. NLP PROCESSING PIPELINE
+
+Implement the actual NLP pipeline in Python.
+
+### Step 1: Document extraction
+- Extract text from PDF, DOCX, and TXT.
+- Detect empty or unreadable documents.
+- Handle PDFs that contain scanned images by clearly explaining that OCR is needed if OCR is not implemented.
+- Preserve meaningful paragraphs where possible.
+
+### Step 2: Text preprocessing
+- Normalize whitespace.
+- Handle Turkish characters correctly: ç, ğ, ı, İ, ö, ş, ü.
+- Remove unnecessary punctuation and control characters.
+- Tokenize the text using a method suitable for the selected language.
+- Remove appropriate Turkish stop words.
+- Preserve meaningful terms and relevant multi-word phrases.
+- Avoid destroying important technical terms, names, abbreviations, or academic vocabulary.
+
+Do not blindly remove every short word or every capitalized term.
+
+### Step 3: Keyword extraction
+Implement a genuine keyword extraction algorithm, preferably YAKE or TextRank for single-document analysis, or another justified approach.
+
+Requirements:
+- Extract meaningful keywords and multi-word phrases.
+- Rank the candidates.
+- Return the requested number of keywords when enough valid candidates exist.
+- Include a method or relevance score with a clear explanation of what it represents.
+- Include frequency when it can be computed reliably.
+- Avoid duplicate keywords and redundant phrases.
+- Handle short documents gracefully.
+- Return fewer keywords rather than inventing results when there is insufficient text.
+
+Do not present arbitrary scores as calibrated probabilities.
+
+If TF-IDF is used, explain and implement a suitable reference corpus or document collection when document-frequency statistics are needed. Do not assume that TF-IDF on a single document alone provides reliable corpus-level importance.
+
+### Step 4: Gensim Word2Vec
+Implement a real Gensim Word2Vec component.
+
+- Provide a reproducible model training or loading process.
+- Use a valid tokenized corpus.
+- Configure parameters clearly, such as vector size, window, minimum count, and epochs.
+- Ensure that the vocabulary and model status are inspectable.
+- For extracted keywords, find semantically related words using the trained model.
+- Return similarity values only when supported by the model.
+- Handle out-of-vocabulary words gracefully.
+- Explain that a small demonstration corpus is not equivalent to a large, high-quality Turkish language model.
+
+Do not fabricate semantic similarity scores.
+
+### Step 5: Results
+Return structured JSON from FastAPI, including fields similar to:
+- `document_title`
+- `language`
+- `word_count`
+- `sentence_count`
+- `keywords`
+- `phrases`
+- `related_words`
+- `processing_time`
+- `model_status`
+- `warnings`
+
+Each keyword may contain:
+- `term`
+- `score`
+- `frequency`, if available
+- `related_terms`, if available
+- `context`, if available
+
+Use proper Pydantic response models.
+
+---
+
+## 8. ANALYSIS RESULTS PAGE
+
+Design a visually impressive but readable results page.
+
+### Header
+- Article title
+- Analysis date
+- Processing duration
+- Download results button
+- Reanalyze button
+
+### Summary cards
+- Total words
+- Total sentences
+- Extracted keyword count
+- Model status
+
+### Keyword table
+Columns:
+- Rank
+- Keyword or phrase
+- Relevance score
+- Frequency, if available
+- Related words
+- Actions
+
+Features:
+- Search within results
+- Sort by rank, score, or frequency when available
+- Filter by single words and phrases
+- Copy an individual keyword
+- Copy all keywords
+- Export to CSV
+- Export to TXT
+
+### Keyword visualization
+Create a tasteful keyword visualization using size or weight to reflect the returned ranking. Ensure the visualization remains readable and accessible. Do not use random values for visual importance.
+
+### Semantic relationships
+Display Word2Vec related terms for supported keywords.
+
+Provide:
+- A list or graph of related terms
+- Similarity values where genuinely calculated
+- Clear labels explaining that the values are model similarity scores
+- Helpful messages for unsupported or out-of-vocabulary terms
+
+A graph library may be used if appropriate. Otherwise, use a well-designed relationship list. Never display fake connections.
+
+### Method explanation
+Add a collapsible section called “Bu analiz nasıl yapıldı?”
+
+Explain in Turkish:
+- Text preprocessing
+- Keyword extraction method
+- Role of Gensim Word2Vec
+- Limitations of the model
+- Why the output should be reviewed by the user
+
+---
+
+## 9. ANALYSIS HISTORY
+
+Implement a working history page for authenticated users.
+
+Features:
+- Search by article title
+- Sort by date
+- Filter by processing status
+- Open previous results
+- Delete an analysis after confirmation
+- Pagination if needed
+- Empty state for users without analyses
+
+Store only the information needed for the application. Make document-retention behavior clear.
+
+If original files are not required after processing, avoid storing them permanently by default. If file retention is implemented, clearly disclose it and provide deletion functionality.
+
+Ensure that users cannot access another user's private analysis by changing a URL or record identifier.
+
+---
+
+## 10. WORD EXPLORER
+
+Create a page that demonstrates the semantic capabilities of Gensim Word2Vec.
+
+Features:
+- Search for a word
+- Display whether the word exists in the model vocabulary
+- Show the nearest related words
+- Display genuine similarity scores
+- Provide a clear message when the model cannot evaluate a word
+- Explain the model's training corpus and limitations
+
+Do not claim that the model understands every Turkish word or that it has been trained on the entire internet.
+
+If a semantic relationship graph is implemented, derive its nodes and edges from actual model results.
+
+---
+
+## 11. MODEL INFORMATION PAGE
+
+Create a technical but accessible page explaining the NLP architecture.
+
+Display:
+- NLP methods used
+- Keyword extraction algorithm
+- Gensim Word2Vec status
+- Vocabulary size
+- Training corpus description
+- Model parameters
+- Backend health status
+- Last training date, when recorded
+- Known limitations
+
+Every metric must come from the actual backend or model metadata. If information is unavailable, display “Belirtilmedi” rather than inventing a value.
+
+Include an educational explanation of the difference between keyword extraction and word embeddings.
+
+---
+
+## 12. USER AUTHENTICATION AND PROFILE
+
+Build functional account pages.
+
+### Register
+Fields:
+- Full name
+- Email address
+- Password
+- Password confirmation
+- Required Terms of Service acceptance
+- Required Privacy Policy acknowledgement where appropriate
+
+### Login
+- Email
+- Password
+- Show/hide password
+- Validation messages
+- Forgot password link
+- Logout functionality
+
+### Profile
+- User name
+- Email address
+- Account creation date
+- Update profile details
+- Change password
+- Delete account
+
+### Security requirements
+- Hash passwords using a secure password-hashing algorithm.
+- Validate input on the backend.
+- Apply sensible rate limits to authentication endpoints where supported.
+- Do not expose passwords, tokens, or secrets in logs.
+- Protect private endpoints.
+- Prevent users from reading or deleting other users' records.
+- Use secure cookie settings if cookie-based sessions are used.
+- Provide a real account deletion flow with confirmation.
+- Do not claim email verification or password reset works unless a real delivery mechanism has been configured.
+
+If email delivery is not configured, provide a clearly documented development-only alternative rather than pretending an email was sent.
+
+For a public deployment, use a production-appropriate authentication strategy and HTTPS.
+
+---
+
+## 13. TERMS OF SERVICE
+
+Create a dedicated `/terms` page in Turkish.
+
+Include:
+- Purpose of LexiMind
+- Acceptable use
+- User responsibilities
+- Responsibility for uploaded content
+- Copyright and intellectual property
+- Limitations of automated NLP results
+- Service availability and technical limitations
+- Account suspension or termination where justified
+- Contact information placeholder that must be configured before production
+
+State clearly that keyword extraction and semantic relationships are computational suggestions and may require human review.
+
+Use readable sections, a table of contents if useful, and a last-updated field that is maintained honestly.
+
+Do not invent a company, address, legal entity, or contact email.
+
+---
+
+## 14. PRIVACY POLICY
+
+Create a dedicated `/privacy` page in Turkish.
+
+Explain accurately:
+- What account information is collected
+- What document content is processed
+- Whether uploaded files are retained
+- What analysis metadata is stored
+- How users can delete their analysis history
+- How users can delete their accounts
+- Whether analytics or third-party services are used
+- Data-retention periods
+- Security measures and their limitations
+- How users can contact the application operator
+
+The policy must match the actual implementation.
+
+Do not claim that data is never stored if the database saves analysis content. Do not claim that data is encrypted at rest unless this is actually configured.
+
+Use configurable placeholders for the operator's contact details and any production-specific legal information.
+
+Design the policy to support a review for applicable privacy laws, including KVKK where relevant. Do not claim legal compliance merely because a policy page exists.
+
+---
+
+## 15. COOKIE CONSENT AND COOKIE POLICY
+
+Create a proper cookie consent interface.
+
+### Consent banner
+Display a compact, accessible banner at the bottom of the screen on first visit.
+
+Turkish text:
+“LexiMind, hizmetin çalışması için gerekli çerezleri kullanır. İzin vermen durumunda isteğe bağlı çerezler de kullanılabilir. Tercihlerini istediğin zaman değiştirebilirsin.”
+
+Buttons:
+- “Tümünü Kabul Et”
+- “İsteğe Bağlıları Reddet”
+- “Tercihleri Yönet”
+
+### Preferences modal
+Allow users to manage:
+- Necessary cookies — always enabled when genuinely necessary
+- Analytics cookies — optional
+- Marketing cookies — only if actually implemented
+
+Include:
+- Save preferences
+- Cancel
+- Clear explanations for each category
+- A link to `/cookies`
+- A way to reopen cookie settings from the footer or settings page
+
+### Technical requirements
+- Store consent choices with an appropriate consent version and timestamp.
+- Do not load optional analytics or marketing scripts before the required consent has been obtained.
+- Never create fake cookie controls.
+- Do not classify every cookie as necessary.
+- Use cookies only when required by the chosen implementation.
+- Do not use persistent tracking if the application has no legitimate need for it.
+- Ensure the banner does not block important content or controls on mobile.
+
+### Cookie Policy page
+Explain:
+- What cookies are
+- Which cookies are used by the actual application
+- Their purposes
+- Their duration
+- Whether third parties set any cookies
+- How users can change their preferences
+
+Generate the final cookie inventory from the actual implementation. Do not invent cookie names, providers, or durations.
+
+---
+
+## 16. SETTINGS
+
+Create a settings page containing:
+- Profile settings
+- Password change
+- Privacy options
+- Cookie preferences
+- Analysis preferences
+- Language display, initially Turkish
+- Account deletion
+
+Persist settings that should survive a reload.
+
+Show confirmation messages only after the operation succeeds.
+
+---
+
+## 17. BACKEND API
+
+Implement well-structured FastAPI endpoints, including suitable equivalents of:
+
+- `GET /api/health`
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+- `POST /api/auth/logout`
+- `GET /api/auth/me`
+- `POST /api/analysis`
+- `GET /api/analysis`
+- `GET /api/analysis/{analysis_id}`
+- `DELETE /api/analysis/{analysis_id}`
+- `GET /api/words/{word}/similar`
+- `GET /api/model/info`
+- `GET /api/user/profile`
+- `PATCH /api/user/profile`
+- `DELETE /api/user/account`
+
+Adjust endpoint design if necessary, but keep the API consistent and documented.
+
+Requirements:
+- Validate file types and sizes.
+- Limit request sizes.
+- Use safe temporary-file handling.
+- Handle malformed PDFs, invalid DOCX files, empty documents, and unexpected errors.
+- Return meaningful HTTP status codes.
+- Avoid exposing stack traces or secrets to the frontend.
+- Configure CORS using explicit environment variables rather than unrestricted production access.
+- Add FastAPI Swagger documentation.
+- Provide tests for the most important endpoints.
+
+---
+
+## 18. PROJECT STRUCTURE
+
+Use a maintainable structure similar to:
+
+`frontend/`
+- `src/components/`
+- `src/pages/`
+- `src/layouts/`
+- `src/services/`
+- `src/hooks/`
+- `src/types/`
+- `src/utils/`
+
+`backend/`
+- `app/main.py`
+- `app/api/`
+- `app/core/`
+- `app/models/`
+- `app/schemas/`
+- `app/services/`
+- `app/nlp/`
+- `app/database/`
+- `tests/`
+- `requirements.txt`
+- `.env.example`
+
+Root:
+- `README.md`
+- `.gitignore`
+- Deployment instructions
+
+Adjust the structure when useful, but keep frontend, backend, and NLP code separate.
+
+Do not put the entire application into a single giant file.
+
+---
+
+## 19. TESTING AND ERROR HANDLING
+
+Include tests for:
+- Turkish text preprocessing
+- Keyword extraction from a sufficiently long article
+- Multi-word phrase extraction
+- Empty and very short text
+- Invalid file uploads
+- PDF and DOCX extraction
+- Word2Vec vocabulary checks
+- Semantic similarity results
+- Authentication validation
+- Authorization between different users
+- Analysis-history access controls
+- Account and analysis deletion
+
+The interface must include:
+- Loading states
+- Empty states
+- Validation errors
+- Backend unavailable state
+- Model unavailable state
+- Unsupported language or insufficient text warnings
+- Upload failure messages
+- Success notifications
+
+Never silently replace failed backend responses with fake data.
+
+---
+
+## 20. ACCESSIBILITY AND RESPONSIVENESS
+
+- Use semantic HTML.
+- Label every form field.
+- Ensure keyboard navigation.
+- Provide visible focus states.
+- Use sufficient contrast.
+- Do not rely on color alone to communicate status.
+- Support mobile screens from approximately 360px width upward.
+- Ensure tables and dialogs remain usable on small screens.
+- Respect reduced-motion preferences where practical.
+
+---
+
+## 21. DOCUMENTATION AND UNIVERSITY SUBMISSION
+
+Create a detailed Turkish `README.md` containing:
+
+1. Project overview
+2. Problem statement and objectives
+3. NLP concepts used
+4. Explanation of keyword extraction
+5. Explanation of Gensim Word2Vec
+6. Architecture diagram using Mermaid
+7. Folder structure
+8. Installation requirements
+9. Frontend setup commands
+10. Backend setup commands
+11. Environment variable configuration
+12. How to run the application locally
+13. How to train or load the Word2Vec model
+14. How to run tests
+15. API documentation
+16. Deployment instructions
+17. Known limitations
+18. Ethical and privacy considerations
+19. Example usage
+20. Future improvements
+
+Include a `.env.example` file containing placeholder values only.
+
+Never commit real credentials, API keys, database secrets, or private user data.
+
+Explain how to run the frontend and backend separately. Provide commands that match the actual generated files.
+
+Add a Mermaid architecture diagram that shows:
+
+User → React Frontend → FastAPI Backend → Document Processing → Keyword Extraction + Gensim Word2Vec → Database → Results UI
+
+Do not state that the project is published or deployed until it has actually been deployed.
+
+---
+
+## 22. IMPLEMENTATION RULES
+
+Follow these rules strictly:
+
+1. Prioritize a working end-to-end article analysis workflow over decorative features.
+2. Every visible primary button must perform a real action.
+3. Do not hardcode fake analysis results, fake account statistics, fake model metrics, or fake similarity scores.
+4. Use real API calls between React and FastAPI.
+5. Handle missing environment variables gracefully.
+6. Do not expose secrets in frontend code.
+7. Keep code modular, readable, and suitable for a university student to understand and explain.
+8. Include comments where they help explain important NLP decisions.
+9. Avoid unnecessary dependencies.
+10. Do not claim that any feature is complete unless its underlying functionality is implemented.
+11. If an external service needs credentials, document the requirement and provide a clear configuration step.
+12. If a feature cannot be completed in the current environment, clearly identify it rather than simulating success.
+13. Use realistic Turkish sample text only for previews or tests, clearly labeling it as sample content.
+14. Make the application usable without a paid AI API. The main NLP pipeline must run through Python libraries and the configured model.
+15. Never send private article text to an external AI service unless the feature is explicitly configured, disclosed, and authorized.
+
+---
+
+## 23. EXECUTION PLAN
+
+Build the application in this order:
+
+**Phase 1 — Working NLP core**
+- FastAPI backend
+- Document parsing
+- Turkish preprocessing
+- Keyword and phrase extraction
+- Gensim Word2Vec training/loading and semantic similarity
+- Tests and API documentation
+
+**Phase 2 — Frontend**
+- Brand design
+- Responsive dashboard
+- Upload and paste-text forms
+- API integration
+- Results page
+- Export functionality
+
+**Phase 3 — Accounts and persistence**
+- Database
+- Authentication
+- User profile
+- Analysis history
+- Access controls
+
+**Phase 4 — Trust and compliance pages**
+- Terms of Service
+- Privacy Policy
+- Cookie Policy
+- Cookie preference management
+- Settings
+
+**Phase 5 — Quality and deployment**
+- Tests
+- Error handling
+- Accessibility
+- Security review
+- README
+- Environment configuration
+- Separate frontend/backend deployment preparation
+
+After each phase, verify that the implemented functionality works before proceeding.
+
+## FINAL INSTRUCTION
+
+Start by inspecting the existing project files and preserving any working implementation. Do not overwrite useful code blindly.
+
+If the environment only supports frontend generation, create the complete frontend and clearly document the backend files and setup needed. If full-stack file creation is supported, implement the Python backend and frontend as separate parts of the same project.
+
+First provide a concise implementation plan and project file structure. Then build the application incrementally, starting with the real NLP backend and the article-analysis workflow.
+
+The final product must be called **LexiMind**, must have a professional dark interface with Turkish UI text, and must be a genuinely functional academic NLP application—not merely a static design.

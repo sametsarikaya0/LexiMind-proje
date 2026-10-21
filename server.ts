@@ -89,13 +89,18 @@ async function checkPythonHealth(): Promise<boolean> {
 async function forwardToPython(req: Request, res: Response, targetPath: string) {
   const url = `${PYTHON_URL}${targetPath}`;
   try {
+    const forwardHeaders: Record<string, string> = {
+      'Content-Type': req.headers['content-type'] || 'application/json',
+      Accept: 'application/json',
+    };
+    if (req.headers['authorization']) {
+      forwardHeaders['Authorization'] = req.headers['authorization'] as string;
+    }
+
     const fetchOptions: RequestInit = {
       method: req.method,
-      headers: {
-        'Content-Type': req.headers['content-type'] || 'application/json',
-        Accept: 'application/json',
-      },
-      signal: AbortSignal.timeout(15000),
+      headers: forwardHeaders,
+      signal: AbortSignal.timeout(30000),
     };
 
     if (req.method !== 'GET' && req.method !== 'HEAD' && req.body) {

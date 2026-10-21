@@ -12,12 +12,19 @@ export interface ModelInfo {
   academic_note?: string;
   known_limitations?: string[];
   training_metadata?: Record<string, any>;
+  framework_versions?: Record<string, string>;
+  similarity_metric?: string;
+  distance_metric?: string;
+  vector_format?: string;
+  engine?: string;
 }
 
 export interface SimilarWordItem {
   word: string;
   score: number;
-  percentage_display: string;
+  percentage_display?: string;
+  percentage?: string;
+  similarity?: number;
 }
 
 export interface SimilarWordsResponse {
@@ -138,6 +145,7 @@ export interface HealthResponse {
   service: string;
   model_loaded: boolean;
   environment: string;
+  database?: string;
 }
 
 export interface AnalogyResultItem {
@@ -213,3 +221,102 @@ export interface ThemeConfig {
   accentColor: string;
   isDark: boolean;
 }
+
+export interface UserProfile {
+  id: number;
+  email: string;
+  full_name: string;
+  created_at: number;
+  updated_at?: number;
+  settings?: Record<string, any>;
+}
+
+export interface AuthResponseData {
+  status: string;
+  message: string;
+  token: string;
+  user: UserProfile;
+}
+
+export interface KeywordRelatedWord {
+  word: string;
+  similarity: number;
+  percentage: string;
+}
+
+export interface KeywordResult {
+  rank: number;
+  term: string;
+  score: number;
+  frequency: number;
+  is_phrase: boolean;
+  context?: string;
+  related_words?: KeywordRelatedWord[];
+  in_model_vocab?: boolean;
+  vocab_status?: string;
+}
+
+export interface AnalysisRecord {
+  id: string;
+  user_id?: number | null;
+  title: string;
+  document_type: string;
+  language: string;
+  word_count: number;
+  sentence_count: number;
+  processing_time_ms: number;
+  keywords: KeywordResult[];
+  phrases: string[];
+  model_status: Record<string, any>;
+  warnings?: string | null;
+  created_at: number;
+  raw_text_summary?: string;
+}
+
+export interface AnalysisSummaryItem {
+  id: string;
+  user_id?: number | null;
+  title: string;
+  document_type: string;
+  word_count: number;
+  sentence_count: number;
+  processing_time_ms: number;
+  keyword_count: number;
+  top_keywords: string[];
+  created_at: number;
+}
+
+export interface UserDashboardStats {
+  total_analyses: number;
+  total_extracted_keywords: number;
+  processed_documents: number;
+  most_recent_article?: {
+    id: string;
+    title: string;
+    created_at: number;
+  } | null;
+}
+
+export interface CookiePreferences {
+  necessary: boolean;
+  analytics: boolean;
+  marketing: boolean;
+  timestamp: number;
+  version: string;
+}
+
+export type PageRoute =
+  | 'dashboard'
+  | 'new-analysis'
+  | 'analysis-result'
+  | 'history'
+  | 'words'
+  | 'model'
+  | 'profile'
+  | 'settings'
+  | 'terms'
+  | 'privacy'
+  | 'cookies'
+  | 'login'
+  | 'register'
+  | 'forgot-password';

@@ -1,176 +1,178 @@
-# LexiMind — Turkish Semantic Intelligence Lab 🧠
+# LexiMind — AI-Powered Academic Article Analysis & Turkish NLP Platform 🧠
 
-> **Word2Vec (Skip-gram & CBOW) Tabanlı Türkçe Doğal Dil İşleme, Kelime Vektörü, PCA 2D İzdüşüm, Analoji Aritmetiği ve Semantik Analiz Platformu**  
+> **Akademik Makale Analizi, YAKE/TextRank Tabanlı Anahtar Kelime & Tamlama Çıkarımı ve Gensim Word2Vec Semantik Zeka Platformu**  
 > *Üniversite Doğal Dil İşleme (NLP) Dersi Kapsamlı Projesi ve Akademik Raporu*
 
 ---
 
 ## 📑 İçindekiler
 1. [Projenin Amacı ve Kapsamı](#1-projenin-amacı-ve-kapsamı)
-2. [Doğal Dil İşleme (NLP) ve Dağılımsal Hipotez](#2-doğal-dil-işleme-nlp-ve-dağılımsal-hipotez)
-3. [Word2Vec Teorisi: Skip-gram vs. CBOW](#3-word2vec-teorisi-skip-gram-vs-cbow)
-4. [Vektör Geometrisi: Kosinüs Benzerliği ve Analoji Aritmetiği](#4-vektör-geometrisi-kosinüs-benzerliği-ve-analoji-aritmetiği)
-5. [Türkçe Dil Ön İşleme Hattı](#5-türkçe-dil-ön-işleme-hattı)
-6. [Yazılım Mimarisi (Full-Stack Mimari)](#6-yazılım-mimarisi-full-stack-mimari)
-7. [Özellikler ve Laboratuvar Modülleri](#7-özellikler-ve-laboratuvar-modülleri)
-8. [API Uç Noktaları](#8-api-uç-noktaları)
-9. [Test Metodolojisi ve Pytest Sonuçları (18/18 Geçti)](#9-test-metodolojisi-ve-pytest-sonuçları-1818-geçti)
-10. [Model Değerlendirme Benchmark'ı (LexiMind-TR-Eval)](#10-model-değerlendirme-benchmarkı-leximind-tr-eval)
+2. [Sistem Mimarisi ve Mermaid Şeması](#2-sistem-mimarisi-ve-mermaid-şeması)
+3. [Akademik Anahtar Kelime ve Tamlama Çıkarımı](#3-akademik-anahtar-kelime-ve-tamlama-çıkarımı)
+4. [Gensim Word2Vec Semantik Zeka Motoru](#4-gensim-word2vec-semantik-zeka-motoru)
+5. [Önemli Metodolojik Ayrım: Keyword Extraction vs. Word2Vec](#5-önemli-metodolojik-ayrım-keyword-extraction-vs-word2vec)
+6. [Belge Ayrıştırma (PDF, DOCX, TXT)](#6-belge-ayrıştırma-pdf-docx-txt)
+7. [Veritabanı ve Güvenli Kimlik Doğrulama](#7-veritabanı-ve-güvenli-kimlik-doğrulama)
+8. [Uygulama Sayfaları ve Kullanıcı Deneyimi](#8-uygulama-sayfaları-ve-kullanıcı-deneyimi)
+9. [API Uç Noktaları](#9-api-uç-noktaları)
+10. [Test Metodolojisi ve Pytest Sonuçları (25/25 Geçti)](#10-test-metodolojisi-ve-pytest-sonuçları-2525-geçti)
 11. [Kurulum ve Yerel Çalıştırma Rehberi](#11-kurulum-ve-yerel-çalıştırma-rehberi)
-12. [Dağıtım Rehberi (Vercel & Bağımsız Python Backend)](#12-dağıtım-rehberi-vercel--bağımsız-python-backend)
-13. [Akademik Sınırlılıklar ve Etik](#13-akademik-sınırlılıklar-ve-etik)
-14. [Doğrulanabilir Bilimsel Kaynakça (References)](#14-doğrulanabilir-bilimsel-kaynakça-references)
+12. [Dağıtım Rehberi (Vercel & Python Konteyner)](#12-dağıtım-rehberi-vercel--python-konteyner)
+13. [Akademik Sınırlılıklar ve Etik İlkeler](#13-akademik-sınırlılıklar-ve-etik-ilkeler)
+14. [Doğrulanabilir Bilimsel Kaynakça](#14-doğrulanabilir-bilimsel-kaynakça)
 
 ---
 
 ## 1. Projenin Amacı ve Kapsamı
-**LexiMind**, Türkçe dilinde kelimelerin anlamsal temsillerini öğrenmek, vektör uzayında geometrik ilişkilerini incelemek ve metin analizi yapmak üzere geliştirilmiş gerçek ve eksiksiz bir NLP platformudur.
+**LexiMind**, Türkçe akademik makalelerin, tezlerin ve bilimsel araştırmaların metin katmanını ayrıştırıp, metin içindeki en kritik anahtar kelimeleri ve çok kelimeli akademik tamlamaları (n-gram) otomatik olarak çıkaran; ardından bu terimleri **Gensim Word2Vec** gömme uzayında semantik olarak haritalayan gerçek ve tam donanımlı bir üniversite Doğal Dil İşleme (NLP) platformudur.
 
-Projede hazır harici yapay zekâ sohbet API'ları (Gemini, OpenAI vb.) yerine, doğrudan matematiksel temelleriyle çalışan **Gensim 4.4 Word2Vec** kütüphanesi, **FastAPI** web servisi ve **React 19 / TypeScript** kullanıcı arayüzü kullanılmıştır.
-
----
-
-## 2. Doğal Dil İşleme (NLP) ve Dağılımsal Hipotez
-Geleneksel yöntemler (One-Hot Encoding, TF-IDF), kelimeleri birbirine dik (ortogonal) ve anlamdan yoksun ayrık semboller olarak görür:
-- **TF-IDF:** Kelimeleri $V$ boyutlu seyrek (sparse) vektörlerle modeller. İki kelimenin semantik eşdeğerliğini veya tematik yakınlığını hesaplayamaz.
-- **Dağılımsal Hipotez (Firth, 1957; Harris, 1954):** *"Bir kelimeyi arkadaşlık ettiği çevre kelimelerinden tanırsınız."* Word2Vec, kelimelerin bağlamsal dağılımını öğrenerek her kelimeye $d=100$ boyutlu yoğun (dense) bir gömme (embedding) vektörü atar.
+Projede yapay hazır sohbet botları yerine, doğrudan matematiksel temellerle geliştirilen **Python 3.11, FastAPI, Gensim 4.3 Word2Vec, SQLite (Bcrypt şifreleme)** ve **React 19 / TypeScript / Tailwind CSS** teknolojileri kullanılmıştır.
 
 ---
 
-## 3. Word2Vec Teorisi: Skip-gram vs. CBOW
+## 2. Sistem Mimarisi ve Mermaid Şeması
 
-### Skip-gram Algoritması (`sg=1`, Varsayılan Model):
-Merkez kelimeden $w_t$, bağlam penceresindeki $w_{t+j}$ çevre kelimelerini tahmin eder:
-$$\mathcal{L} = \sum_{t=1}^{T} \sum_{-c \le j \le c, j \ne 0} \log P(w_{t+j} \mid w_t)$$
-
-Koşullu olasılık **Negatif Örnekleme (Negative Sampling, $k=5$)** ile hesaplanır:
-$$P(w_O \mid w_I) \approx \log \sigma({v'_{w_O}}^\top v_{w_I}) + \sum_{i=1}^{k} \mathbb{E}_{w_i \sim P_n(w)} [\log \sigma(-{v'_{w_i}}^\top v_{w_I})]$$
-
-Küçük ve orta ölçekli derlemlerde ve nadir sözcüklerde CBOW'a göre daha yüksek temsil gücü sunar.
-
-### CBOW (Continuous Bag of Words, `sg=0`):
-Çevre kelimelerin vektör ortalamasından merkez kelimeyi tahmin eder. Büyük derlemlerde daha hızlı yakınsar. Projedeki **Model Eğitimi** modülü üzerinden kullanıcı her iki mimariyi de gerçek zamanlı karşılaştırabilir.
-
----
-
-## 4. Vektör Geometrisi: Kosinüs Benzerliği ve Analoji Aritmetiği
-
-### Kosinüs Benzerliği:
-İki kelime vektörü $\vec{u}$ ve $\vec{v}$ arasındaki açısal yönelimi ölçer:
-$$\text{cos}(\theta) = \frac{\vec{u} \cdot \vec{v}}{\|\vec{u}\| \|\vec{v}\|} = \frac{\sum_{i=1}^{d} u_i v_i}{\sqrt{\sum_{i=1}^{d} u_i^2} \sqrt{\sum_{i=1}^{d} v_i^2}} \in [-1.0, 1.0]$$
-Negatif skorlar yapay olarak filtrelenmez; vektörlerin zıt kutupluluğunu gösterir.
-
-### Vektör Analoji Aritmetiği:
-$$\vec{v}_{\text{hedef}} \approx (\vec{v}_A - \vec{v}_B) + \vec{v}_C$$
-Örnek: `bilgisayar - donanım + yazılım ≈ algoritma`  
-Gensim'in `most_similar(positive=[...], negative=[...])` metodu ile gerçek zamanlı hesaplanır.
-
-### 2D PCA Projeksiyonu (SVD):
-100 boyutlu gömme vektörleri, Tekil Değer Ayrışımı (Singular Value Decomposition) uygulanarak varyansı en yüksek ilk 2 temel bileşene indirgenir.
-
----
-
-## 5. Türkçe Dil Ön İşleme Hattı
-1. **Unicode & Harf Normalizasyonu:** Türkçe `İ` $\to$ `i` ve `I` $\to$ `ı` dönüşümleri özel harita ile hatasız işletilir.
-2. **Noktalama & Regex Belirteçleme:** `\b\w+\b` regex kalıbı ile kelimeler ayrıştırılır.
-3. **Cümle Segmentasyonu:** Nokta, ünlem ve soru işaretleri ile cümle sınırları belirlenir.
-4. **Deduplication:** Tekrarlanan ve anlamsız satırlar elenerek derlem temizlenir.
-5. **Seçici Stop-word:** Model eğitiminde cümle akışı korunur; metin frekans özetlerinde opsiyonel filtrelenir.
-
----
-
-## 6. Yazılım Mimarisi (Full-Stack Mimari)
-
-```text
-[ React 19 + TypeScript + Tailwind CSS Frontend ]
-                        │
-                        ▼ (HTTP JSON)
-    [ Express API Proxy / Vite Server (Port 3000) ]
-                        │
-                        ▼ (Proxy Forwarding)
-    [ Python 3.11 + FastAPI + Uvicorn (Port 8001) ]
-                        │
-            ┌───────────┴───────────┐
-            ▼                       ▼
-    [ nlp/service.py ]      [ nlp/train.py ]
-    (Singleton Word2Vec)    (Gensim Training)
-            │                       │
-            ▼                       ▼
-   [ models/word2vec_tr.model ]  [ data/corpus.txt ]
+```mermaid
+graph TD
+    User([Kullanıcı / Araştırmacı]) --> Frontend[React 19 + TypeScript + Tailwind CSS]
+    Frontend --> FastAPI[FastAPI REST API Backend]
+    FastAPI --> DocEngine[Belge Ayrıştırma: PyMuPDF / python-docx / txt]
+    FastAPI --> NLPEngine[Türkçe Ön İşleme: Tokenizasyon & Stopwords & İmla]
+    NLPEngine --> KeywordRanker[Aday Terim & Tamlama Skorlayıcı YAKE / TextRank]
+    KeywordRanker --> Word2Vec[Gensim Word2Vec Semantik Motoru]
+    Word2Vec --> Database[(SQLite / PostgreSQL Veritabanı)]
+    Database --> Frontend
 ```
 
 ---
 
-## 7. Özellikler ve Laboratuvar Modülleri
-
-1. **Benzer Kelimeler Laboratuvarı:** Belirtilen kelimenin Word2Vec uzayındaki en yakın komşularını kosinüs skoruyla listeler.
-2. **Kelime Karşılaştırma:** İki kelimenin kosinüs benzerliği ve Öklid mesafesini hesaplar.
-3. **Analoji & Aritmetik Gezgini:** Vektör toplama ve çıkarma ile analojileri çözer ($v_A - v_B + v_C$).
-4. **2D Vektör İzdüşümü (PCA):** 100 boyutlu vektör uzayını interaktif 2D saçılım grafiğinde görselleştirir.
-5. **Semantik İlişki Ağı:** Düğüm ve kenar ağırlıklarıyla kosinüs benzerliği grafiği oluşturur.
-6. **Metin Analiz Laboratuvarı:** Metnin kelime frekansını, sözlük kapsama oranını ve ortalama metin embedding vektörünü çıkarır.
-7. **Derlem Gezgini:** Derlemdeki token hacmini, Type-Token oranını (TTR) ve Zipf frekans dağılımını gösterir.
-8. **Model Eğitimi:** Parametreleri (`vector_size`, `window`, `min_count`, `sg`, `negative`, `epochs`, `seed`) değiştirerek modeli canlı olarak yeniden eğitir.
-9. **Sözlük Gezgini:** Model sözlüğünde arama ve filtreleme yapar.
-10. **Ödev Raporu & Bilimsel Metodoloji:** Üniversite teslim metnini ve teorik literatür raporunu sunar.
+## 3. Akademik Anahtar Kelime ve Tamlama Çıkarımı
+LexiMind'de tek doküman analizlerinde istatistiksel ve çizge (graf) temelli aday skorlama (YAKE / TextRank prensipleri) kullanılır:
+1. **Türkçe Ön İşleme:** Kesme işaretleri temizlenir, Türkçe büyük-küçük harf duyarlılığı (`İ` $\to$ `i`, `I` $\to$ `ı`) hatasız dönüştürülür, özel karakterler ve kontrol sembolleri normalize edilir.
+2. **Akademik Stop-Words Filtreleme:** Anlam taşımayan bağlaç, edat ve zamirler (ve, veya, ile, için, bu, şu, vb.) elenir; ancak teknik terimler ve bilimsel kısaltmalar korunur.
+3. **Aday Tamlama Çıkarımı (N-Gram):** 1'li, 2'li ve 3'lü aday kelime öbekleri çıkarılır (örneğin: *"doğal dil işleme"*, *"derin öğrenme algoritmaları"*).
+4. **Skorlama Metriği:** Terim frekansı ($TF$), belgedeki konumsal ağırlık (başlık ve ilk paragraflarda geçme önceliği) ve terim yayılımı (cümleler arası dağılım) harmanlanarak birleşik alaka düzeyi skoru hesaplanır.
 
 ---
 
-## 8. API Uç Noktaları
+## 4. Gensim Word2Vec Semantik Zeka Motoru
+- **Mimari:** Skip-gram (`sg=1`) ve CBOW (`sg=0`) desteği.
+- **Vektör Boyutu ($d$):** Varsayılan $100$ boyutlu yoğun (dense) Float32 gömme vektörleri (arayüzden 30d, 50d, 100d, 200d, 300d olarak dinamik olarak yeniden eğitilebilir).
+- **Negatif Örnekleme:** $k=5$ örnekleme ile verimli soft-max yaklaşımı.
+- **Kosinüs Benzerliği:**
+  $$\text{cos}(\theta) = \frac{\vec{u} \cdot \vec{v}}{\|\vec{u}\| \|\vec{v}\|}$$
+- **Vektör Analojisi:**
+  $$\vec{v}_{\text{hedef}} \approx (\vec{v}_A - \vec{v}_B) + \vec{v}_C$$
+  *(Örnek: bilgisayar - donanım + yazılım ≈ algoritma)*
+- **2D PCA İzdüşümü:** 100 boyutlu uzay Tekil Değer Ayrışımı (SVD) ile varyansı en yüksek ilk 2 temel bileşene indirgenerek haritalandırılır.
+
+---
+
+## 5. Önemli Metodolojik Ayrım: Keyword Extraction vs. Word2Vec
+> **Akademik Not:** Word2Vec tek başına tek bir belgeden anahtar kelime çıkarma algoritması **değildir**. Word2Vec, geniş bir derlemde kelimelerin bağlamsal dağılımını öğrenir. 
+> LexiMind'de makaleden terim çıkarma işlemi istatistiksel ve graf-tabanlı aday skorlayıcı ile gerçekleştirilir; Word2Vec ise çıkarılan bu terimlerin semantik komşularını, eş anlamlılarını ve anlamsal alanlarını bulmak için kullanılır.
+
+---
+
+## 6. Belge Ayrıştırma (PDF, DOCX, TXT)
+- **PDF Ayrıştırma:** PyMuPDF (`fitz`) motoru ile çok sayfalı akademik PDF'lerin metin katmanı okunur. Taranmış/resim PDF'ler için OCR gereksinimi açıkça belirtilir.
+- **DOCX Ayrıştırma:** `python-docx` ile başlıklar ve paragraflar ayrıştırılır.
+- **TXT & Doğrudan Yapıştırma:** UTF-8 kodlama ile ham metinler hızlıca işlenir.
+- **Gizlilik Güvencesi:** Yüklenen orijinal belgeler disk üzerinde kalıcı olarak saklanmaz.
+
+---
+
+## 7. Veritabanı ve Güvenli Kimlik Doğrulama
+- **Veritabanı:** İlişkisel SQLite veritabanı (`data/leximind.db`), PostgreSQL soyutlamasına uygun şema.
+- **Şifreleme:** Parolalar **Bcrypt** kriptografik tuzlama algoritması ile özetlenir.
+- **Oturum Yönetimi:** Güvenli kriptografik HMAC imzalı oturum belirteçleri.
+- **Veri Kontrolü:** Kullanıcılar tekil analiz geçmişlerini veya tüm hesaplarını kalıcı olarak silebilir (KVKK / GDPR uyumu).
+
+---
+
+## 8. Uygulama Sayfaları ve Kullanıcı Deneyimi
+1. **Kontrol Paneli (`/dashboard`):** Gerçek veritabanı istatistikleri (analiz sayısı, anahtar kelime hacmi, son makale), hızlı eylemler ve son analizler tablosu.
+2. **Yeni Analiz (`/analysis/new`):** Dosya yükleme (PDF, DOCX, TXT) ve metin yapıştırma alanları; anahtar kelime sayısı (5, 10, 15, 20), tamlama ve benzer kelime tercihleri.
+3. **Analiz Sonuçları (`/analysis/:id`):** Sıralı anahtar kelime tablosu, alaka skoru, frekans, Word2Vec benzerleri, CSV / TXT dışa aktarma ve "Bu analiz nasıl yapıldı?" metodoloji paneli.
+4. **Analiz Geçmişi (`/history`):** Arama, sıralama, geçmiş analizi inceleme ve tekil silme.
+5. **Kelime Gezgini (`/words`):** Word2Vec benzerlik araması, analoji hesaplama, 2D PCA haritası ve etkileşimli semantik ağ grafiği.
+6. **Model Mimarisi (`/model`):** Sözlük büyüklüğü, parametreler, canlı model eğitimi (vektör boyutu ve sözlük dağarcığı değiştirme) ve LexiMind-TR-Eval kıyaslama metrikleri.
+7. **Kullanıcı Profili (`/profile`):** Ad Soyad güncelleme, parola değiştirme ve hesap silme.
+8. **Uygulama Ayarları (`/settings`):** Analiz tercihleri, çerez yönetimi, dil ayarları.
+9. **Kullanım Koşulları (`/terms`):** Yasal ve akademik kullanım sözleşmesi.
+10. **Gizlilik Politikası (`/privacy`):** Veri saklama ve silme taahhütleri.
+11. **Çerez Politikası (`/cookies`):** Şeffaf çerez envanteri ve izin yönetimi.
+12. **Giriş / Kayıt / Parola Sıfırlama (`/login`, `/register`, `/forgot-password`):** Fonksiyonel kullanıcı kimlik yönetimi.
+
+---
+
+## 9. API Uç Noktaları
 
 | Yöntem | Uç Nokta | Açıklama |
 |---|---|---|
-| `GET` | `/health` veya `/api/health` | Sunucu ve model sağlık durumu |
-| `GET` | `/api/model/status` veya `/api/model-info` | Model parametreleri ve sözlük boyutu |
-| `GET` | `/api/model/metadata` | Kapsamlı model ve çerçeve metaverisi |
-| `GET` | `/api/evaluate` | LexiMind-TR-Eval kıyaslama raporu |
-| `GET` | `/api/vocabulary` | Sözlükteki kelimeleri listeleme ve arama |
-| `GET` | `/api/corpus/statistics` | Derlem istatistikleri ve kelime frekansları |
-| `POST` | `/api/similarity` veya `/api/similar` | En yakın benzer kelimeleri bulma |
-| `POST` | `/api/compare` | İki kelimeyi kosinüs ve Öklid ile karşılaştırma |
-| `POST` | `/api/analogy` | Vektör aritmetiği ile kelime analojisi |
-| `POST` | `/api/analyze` | Metin analizi ve ortalama metin vektörü |
-| `POST` | `/api/vector-projection` | 2D PCA vektör projeksiyonu |
+| `GET` | `/api/health` | Sunucu ve model sağlık kontrolü |
+| `POST` | `/api/auth/register` | Yeni kullanıcı kaydı (Bcrypt) |
+| `POST` | `/api/auth/login` | Güvenli kullanıcı girişi ve token üretimi |
+| `POST` | `/api/auth/logout` | Oturum sonlandırma |
+| `GET` | `/api/auth/me` | Giriş yapmış kullanıcı profili |
+| `POST` | `/api/analysis` | Akademik makale analizi ve anahtar kelime çıkarımı |
+| `GET` | `/api/analysis` | Kullanıcının analiz geçmişini listeleme |
+| `GET` | `/api/analysis/{id}` | Belirli bir analizin detaylı sonuçları |
+| `DELETE` | `/api/analysis/{id}` | Analiz kaydını kalıcı olarak silme |
+| `GET` | `/api/analysis/stats/overview` | Kullanıcı analiz istatistikleri |
+| `GET` | `/api/words/{word}/similar` | Kelimenin Word2Vec semantik komşuları |
+| `POST` | `/api/similar` | Benzer kelime sorgusu (POST gövdesi) |
+| `POST` | `/api/compare` | İki kelimeyi kosinüs ve Öklid ile kıyaslama |
+| `POST` | `/api/analogy` | Yönsel vektör aritmetiği (analoji) |
+| `POST` | `/api/vector-projection` | 2D PCA vektör koordinatları |
 | `GET` | `/api/network` | Semantik ağ düğüm ve kenarları |
-| `POST` | `/api/model/train` | Özel parametrelerle modeli yeniden eğitme |
+| `GET` | `/api/model/info` | Model parametreleri ve sözlük boyutu |
+| `POST` | `/api/model/train` | Özel vektör boyutu ve derlemle modeli yeniden eğitme |
+| `GET` | `/api/evaluate` | LexiMind-TR-Eval doğrulama raporu |
+| `GET` | `/api/vocabulary` | Model sözlüğündeki terimleri listeleme |
+| `GET` | `/api/corpus/statistics` | Derlem istatistikleri ve frekans analizi |
+| `PATCH` | `/api/user/profile` | Profil bilgilerini güncelleme |
+| `POST` | `/api/user/change-password` | Parola güncelleme |
+| `DELETE` | `/api/user/account` | Kullanıcı hesabını ve tüm verilerini silme |
 
 ---
 
-## 9. Test Metodolojisi ve Pytest Sonuçları (18/18 Geçti)
+## 10. Test Metodolojisi ve Pytest Sonuçları (25/25 Geçti)
 
-Automated test suite `tests/test_api.py` altında **18 adet** birim ve entegrasyon testi içermektedir:
+Automated test suite `tests/` altında **25 adet** birim ve entegrasyon testi içermektedir:
 
 ```bash
 pytest -v
 ```
 
-Sonuçlar:
-- `test_health_endpoint`: **PASSED** (200 OK ve status: healthy)
-- `test_model_info_endpoint`: **PASSED** (Hiperparametreler ve sınırlılıklar)
-- `test_evaluate_endpoint`: **PASSED** (Değerlendirme metrikleri)
-- `test_vocabulary_endpoint`: **PASSED** (Sözlük listeleme)
-- `test_similar_words_known`: **PASSED** (Bilinen kelime kosinüs sıralaması)
-- `test_similar_words_unknown`: **PASSED** (Bilinmeyen kelimede 404 ve öneri)
-- `test_compare_words_success`: **PASSED** (Kosinüs ve Öklid hesabı)
-- `test_compare_words_unknown_fails`: **PASSED** (Eksik kelimede kontrollü 404)
-- `test_invalid_empty_input_rejected`: **PASSED** (Pydantic 422 doğrulaması)
-- `test_analyze_text_statistics_and_vector`: **PASSED** (Ortalama metin vektörü)
-- `test_vector_projection_pca`: **PASSED** (SVD 2D koordinat üretimi)
-- `test_turkish_character_processing`: **PASSED** (İ/ı ve Türkçe karakter koruması)
-- `test_network_graph_endpoint`: **PASSED** (Düğüm ve kenar yapısı)
-- `test_analogy_endpoint_known`: **PASSED** (Vektör analojisi hesaplaması)
-- `test_analogy_endpoint_unknown_fails`: **PASSED** (Bilinmeyen analoji kelimesinde 404)
-- `test_corpus_statistics_endpoint`: **PASSED** (TTR, satır, token istatistikleri)
-- `test_model_metadata_endpoint`: **PASSED** (Gensim, NumPy sürümleri)
-- `test_train_model_endpoint`: **PASSED** (Model yeniden eğitimi ve validasyon)
-
----
-
-## 10. Model Değerlendirme Benchmark'ı (LexiMind-TR-Eval)
-`data/evaluation_set.json` içerisindeki referans Türkçe kelime çiftleri üzerinde modelin ayrım gücü test edilir:
-- **Yüksek Benzerlik Çiftleri:** (Örn: `doktor - hekim`, `yapay - zeka`, `bilgisayar - yazılım`)
-- **İlişkisiz Çiftler:** (Örn: `para - şiir`, `doktor - coğrafya`)
-Modelin yüksek çiftlere atadığı benzerlik ortalaması ile ilişkisiz çiftler arasındaki fark (discrimination margin) pozitif ve belirgindir ($>0.20$).
+Sonuç Özeti:
+- `tests/test_academic_nlp.py`:
+  - `test_turkish_preprocessing_and_cleaning`: **PASSED** (İ/ı ve Türkçe karakter koruması)
+  - `test_keyword_and_keyphrase_extraction`: **PASSED** (Aday terim ve tamlama skorlama)
+  - `test_txt_document_parser`: **PASSED** (TXT metin ayrıştırma)
+  - `test_invalid_extension_parser_error`: **PASSED** (Geçersiz dosya reddi)
+  - `test_security_password_hashing`: **PASSED** (Bcrypt tuzlama ve şifreleme)
+  - `test_signed_token_lifecycle`: **PASSED** (HMAC token döngüsü ve süresi)
+  - `test_auth_and_analysis_integration_flow`: **PASSED** (Uçtan uca kayıt, giriş ve analiz kaydı)
+- `tests/test_api.py`:
+  - `test_health_endpoint`: **PASSED**
+  - `test_model_info_endpoint`: **PASSED**
+  - `test_evaluate_endpoint`: **PASSED**
+  - `test_vocabulary_endpoint`: **PASSED**
+  - `test_similar_words_known`: **PASSED**
+  - `test_similar_words_unknown`: **PASSED**
+  - `test_compare_words_success`: **PASSED**
+  - `test_compare_words_unknown_fails`: **PASSED**
+  - `test_invalid_empty_input_rejected`: **PASSED**
+  - `test_analyze_text_statistics_and_vector`: **PASSED**
+  - `test_vector_projection_pca`: **PASSED**
+  - `test_turkish_character_processing`: **PASSED**
+  - `test_network_graph_endpoint`: **PASSED**
+  - `test_analogy_endpoint_known`: **PASSED**
+  - `test_analogy_endpoint_unknown_fails`: **PASSED**
+  - `test_corpus_statistics_endpoint`: **PASSED**
+  - `test_model_metadata_endpoint`: **PASSED**
+  - `test_train_model_endpoint`: **PASSED**
 
 ---
 
@@ -182,10 +184,6 @@ Modelin yüksek çiftlere atadığı benzerlik ortalaması ile ilişkisiz çiftl
 
 ### Adım 1: Python Bağımlılıkları ve Model Eğitimi
 ```bash
-# Sanal ortam oluşturma
-python3 -m venv venv
-source venv/bin/activate  # Windows için: .\venv\Scripts\Activate.ps1
-
 # Bağımlılıkları yükleme
 pip install -r requirements.txt
 
@@ -196,7 +194,7 @@ python3 nlp/train.py
 pytest -v
 ```
 
-### Adım 2: Web Arayüzü ve Full-Stack Sunucu
+### Adım 2: Web Arayüzü ve Full-Stack Geliştirme Sunucusu
 ```bash
 npm install
 npm run dev
@@ -206,30 +204,24 @@ npm run dev
 
 ---
 
-## 12. Dağıtım Rehberi (Vercel & Bağımsız Python Backend)
-
-### Mimari Kararı:
-Word2Vec modelleri diskten model dosyası okur ve bellek içi C-uzantılı matris işlemleri yapar. Vercel Serverless Functions ortamında bellek kısıtları (50MB lambda paketi) ve soğuk başlatma (cold start) süreleri nedeniyle kalıcı Python modelleri için önerilen pratik mimari:
-1. **Frontend:** Vercel üzerinde hızlı ve statik olarak barındırılır (`npm run build`).
-2. **Backend:** Python FastAPI servisi bağımsız bir Python konteynerinde (Render, Railway, Fly.io veya Cloud Run) çalıştırılır.
-3. **Entegrasyon:** Frontend'de `VITE_API_BASE_URL` ortam değişkeni canlı backend adresine yönlendirilir.
-
-Alternatif olarak, küçük derlemli tekil Vercel dağıtımları için `vercel.json` yapılandırması projede hazırdır.
+## 12. Dağıtım Rehberi (Vercel & Python Konteyner)
+- **Frontend (React/Vite):** Vercel üzerinde tek tıkla barındırılabilir (`npm run build`). `.npmrc` (`legacy-peer-deps=true`) ve `vercel.json` yapılandırması hazırdır.
+- **Backend (FastAPI):** Python tabanlı barındırma sağlayıcılarında (Render, Railway, Fly.io veya Google Cloud Run) `uvicorn main:app --host 0.0.0.0 --port 8001` komutuyla çalıştırılır.
+- **Frontend-Backend Bağlantısı:** Canlı ortamda `VITE_API_URL` ortam değişkeni backend adresine yönlendirilir.
 
 ---
 
-## 13. Akademik Sınırlılıklar ve Etik
-1. **Statik Vektör Kısıtı:** Word2Vec kelime başına tek bir statik vektör atar. Bu nedenle eş sesli (homonim) kelimeler (ör. *yüz* = sayı vs. surat) tek vektörde birleşir. Bağlamsal transformer modelleri (BERT) bu kısıtı çözer.
-2. **Derlem Büyüklüğü:** Sağlanan derlem akademik laboratuvar amaçlıdır; genel amaçlı bir Türkçe LLM modeli iddiası taşımaz.
-3. **Algoritmik Önyargı (Bias):** Model doğrudan derlemdeki kelime eş-oluşumlarını yansıttığından, derlemdeki toplumsal cinsiyet veya kültürel kalıplar vektör uzayına yansır.
+## 13. Akademik Sınırlılıklar ve Etik İlkeler
+1. **Statik Vektör Doğası:** Word2Vec kelime başına tek bir sabit vektör üretir; çok anlamlı (homonim) kelimeler tek bir uzayda birleşir.
+2. **Derlem Ölçeği:** Sağlanan model demonstrasyon amaçlıdır (~2.400 benzersiz terim); internetin tamamı üzerinde eğitilmiş milyarlarca parametreli genel amaçlı LLM değildir.
+3. **Hesaplamalı Öneri Niteliği:** Otomatik çıkarılan anahtar kelimeler ve semantik skorlar araştırmacıya yardımcı hesaplamalı önerilerdir; insan denetimi esastır.
 
 ---
 
-## 14. Doğrulanabilir Bilimsel Kaynakça (References)
-
+## 14. Doğrulanabilir Bilimsel Kaynakça
 1. **Mikolov, T., Chen, K., Corrado, G., & Dean, J. (2013a).** Efficient estimation of word representations in vector space. *arXiv preprint arXiv:1301.3781*.
 2. **Mikolov, T., Sutskever, I., Chen, K., Corrado, G. S., & Dean, J. (2013b).** Distributed representations of words and phrases and their compositionality. *Advances in Neural Information Processing Systems (NeurIPS 2013)*, 26.
-3. **Řehůřek, R., & Sojka, P. (2010).** Software Framework for Topic Modelling with Large Corpora. *In Proceedings of the LREC 2010 Workshop on New Challenges for NLP Frameworks*, pp. 45–50.
-4. **Firth, J. R. (1957).** A synopsis of linguistic theory, 1930-1955. *Studies in Linguistic Analysis*, Philological Society, Oxford.
-5. **Harris, Z. S. (1954).** Distributional structure. *Word*, 10(2-3), 146-162.
-6. **Pennington, J., Socher, R., & Manning, C. D. (2014).** GloVe: Global Vectors for Word Representation. *In Proceedings of EMNLP 2014*, pp. 1532–1543.
+3. **Campos, R., Mangaravite, V., Pasquali, A., Jatowt, A., Jorge, A., Nunes, C., & Jatowt, A. (2020).** YAKE! Keyword extraction from single documents using multiple local features. *Information Sciences*, 509, 257-289.
+4. **Mihalcea, R., & Tarau, P. (2004).** TextRank: Bringing order into text. *In Proceedings of EMNLP 2004*, pp. 404-411.
+5. **Řehůřek, R., & Sojka, P. (2010).** Software Framework for Topic Modelling with Large Corpora. *In Proceedings of the LREC 2010 Workshop on New Challenges for NLP Frameworks*, pp. 45–50.
+6. **Firth, J. R. (1957).** A synopsis of linguistic theory, 1930-1955. *Studies in Linguistic Analysis*, Philological Society, Oxford.

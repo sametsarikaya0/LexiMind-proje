@@ -3,36 +3,40 @@
 @layer base {
   :root, [data-theme="dark"], .dark {
     color-scheme: dark;
-    --theme-bg: #09090b;
-    --theme-surface: #0f141e;
-    --theme-surface-hover: #172030;
-    --theme-border: #1e293b;
-    --theme-border-strong: #334155;
-    --theme-text: #f8fafc;
-    --theme-text-muted: #94a3b8;
-    --theme-text-dim: #64748b;
-    --theme-accent: #6366f1;
-    --theme-accent-hover: #4f46e5;
+    --theme-bg: #0B0D12;
+    --theme-sidebar: #10131B;
+    --theme-surface: #151923;
+    --theme-surface-hover: #1C2230;
+    --theme-border: #1E2433;
+    --theme-border-strong: #2D3748;
+    --theme-text: #F8FAFC;
+    --theme-text-muted: #94A3B8;
+    --theme-text-dim: #64748B;
+    --theme-accent: #6366F1;
+    --theme-accent-hover: #4F46E5;
     --theme-accent-subtle: rgba(99, 102, 241, 0.12);
-    --scrollbar-track: #09090b;
-    --scrollbar-thumb: #27272a;
+    --theme-cyan: #06B6D4;
+    --scrollbar-track: #0B0D12;
+    --scrollbar-thumb: #1E2433;
   }
 
-  [data-theme="light"], :root:not(.dark) {
+  [data-theme="light"] {
     color-scheme: light;
-    --theme-bg: #f8fafc;
-    --theme-surface: #ffffff;
-    --theme-surface-hover: #f1f5f9;
-    --theme-border: #e2e8f0;
-    --theme-border-strong: #cbd5e1;
-    --theme-text: #0f172a;
+    --theme-bg: #F8FAFC;
+    --theme-sidebar: #FFFFFF;
+    --theme-surface: #FFFFFF;
+    --theme-surface-hover: #F1F5F9;
+    --theme-border: #E2E8F0;
+    --theme-border-strong: #CBD5E1;
+    --theme-text: #0F172A;
     --theme-text-muted: #475569;
-    --theme-text-dim: #64748b;
-    --theme-accent: #6366f1;
-    --theme-accent-hover: #4f46e5;
+    --theme-text-dim: #64748B;
+    --theme-accent: #6366F1;
+    --theme-accent-hover: #4F46E5;
     --theme-accent-subtle: rgba(99, 102, 241, 0.08);
-    --scrollbar-track: #f8fafc;
-    --scrollbar-thumb: #cbd5e1;
+    --theme-cyan: #0891B2;
+    --scrollbar-track: #F8FAFC;
+    --scrollbar-thumb: #CBD5E1;
   }
 
   * {
@@ -61,13 +65,16 @@
   width: 6px;
   height: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--scrollbar-track);
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--scrollbar-thumb);
-  border-radius: 3px;
+  border-radius: 9999px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
+  background: var(--theme-border-strong);
 }
